@@ -19,24 +19,14 @@ class DateRepeatView: UIView {
         return view
     }()
     
-    private let dateLabel: UILabel = {
-       let label = UILabel()
-        label.text = "Date"
-        label.textColor = .specialGray
-        label.font = .robotoMedium18()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let repeatSevenLabel: UILabel = {
-       let label = UILabel()
-        label.text = "Repeat every 7 days"
-        label.textColor = .specialGray
-        label.font = .robotoMedium18()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
+    private let dateLabel = UILabel(text: "Date",
+                                    font: .robotoMedium18(),
+                                    textColor: .specialGray)
+       
+    private let repeatSevenLabel = UILabel(text: "Repeat every 7 days",
+                                           font: .robotoMedium18(),
+                                           textColor: .specialGray)
+       
     private lazy var repeatOnSwitch: UISwitch = {
        let repeatSwitch = UISwitch()
         repeatSwitch.isOn = true
@@ -84,6 +74,18 @@ class DateRepeatView: UIView {
         repeatSevenDayStackView = UIStackView(arrangedSubviews: [repeatSevenLabel, repeatOnSwitch], axis: .horizontal, distribution: .equalSpacing)
         backSubView.addSubview(repeatSevenDayStackView)
     }
+    
+    //get acces to the value of the datePicker and Switch
+    public func getValueFromDatePickerAndSwitch() -> (date: Date, isRepeat: Bool) {
+         (datePicker.date, repeatOnSwitch.isOn)
+    }
+        
+    //reset date and switch value after succes saving
+    public func resetDateAndRepeatSwitch() {
+        datePicker.date = Date()
+        repeatOnSwitch.isOn = true
+    }
+    
         
     private func setConstraints() {
         NSLayoutConstraint.activate([

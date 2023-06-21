@@ -66,11 +66,14 @@ class MainViewController: UIViewController {
         setLayouts()
     }
     
+    //MARK: Functionality
+    
     @objc private func addWorkoutTapped() {
         let newWorkoutVC = NewWorkoutViewController()
         newWorkoutVC.modalPresentationStyle = .fullScreen
         present(newWorkoutVC, animated: true)
     }
+    
 }
 
 //MARK: - Layouts
@@ -152,15 +155,23 @@ extension MainViewControllerLayouts {
             workoutTodayLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
         ])
     }
-    
+
     private func setUpMainTableView() {
         NSLayoutConstraint.activate([
             mainTableView.topAnchor.constraint(equalTo: workoutTodayLabel.bottomAnchor, constant: 5),
             mainTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mainTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            
         ])
     }
+}
+
+extension MainViewController: CellActionDelegate {
+    func didButtonTapped() {
+        let startVC = StartWorkoutRepsViewController()
+        startVC.modalPresentationStyle = .fullScreen
+        present(startVC, animated: true)
+    }
+    
     
 }

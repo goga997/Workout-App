@@ -19,89 +19,21 @@ class RepsOrTimerView: UIView {
         return view
     }()
     
-    private let setsLabel: UILabel = {
-       let label = UILabel()
-        label.text = "Sets"
-        label.textColor = .specialGray
-        label.font = .robotoMedium18()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private let setsView = SliderView(name: "Sets", minValue: 0, maxValue: 10, type: .sets)
+    private let repsView = SliderView(name: "Reps", minValue: 0, maxValue: 50, type: .reps)
+    private let timerView = SliderView(name: "Timer", minValue: 0, maxValue: 600, type: .timer)
+    private let chooseRepOrTimeLabel = UILabel(text: "Choose repeat or timer")
+    private var verticalStackView = UIStackView()    // all sliderViews (grouped), vertically stacked + label(between)
+    
+    public var (sets, reps, timer) = (0, 0, 0)   //local storage of data that came from SliderView in changeValueMethod
 
-    private let repsLabel: UILabel = {
-       let label = UILabel()
-        label.text = "Reps"
-        label.textColor = .specialGray
-        label.font = .robotoMedium18()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let timerLabel: UILabel = {
-       let label = UILabel()
-        label.text = "Timer"
-        label.textColor = .specialGray
-        label.font = .robotoMedium18()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let setsNumberLabel: UILabel = {
-        let label = UILabel()
-        label.text = "4"
-        label.font = .robotoMedium24()
-        label.textColor = .specialGray
-        label.textAlignment = .right
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let repsNumberLabel: UILabel = {
-        let label = UILabel()
-        label.text = "6"
-        label.font = .robotoMedium24()
-        label.textColor = .specialGray
-        label.textAlignment = .right
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let timerNumberLabel: UILabel = {
-        let label = UILabel()
-        label.text = "1 min 30 sec"
-        label.font = .robotoMedium24()
-        label.textColor = .specialGray
-        label.textAlignment = .right
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let chooseRepOrTimeLabel: UILabel = {
-       let label = UILabel(text: "Choose repeat or timer")
-        label.textAlignment = .center
-       return label
-    }()
-    
-    private lazy var setsSlider = GreenSlider(minimumValue: 0, maximumValue: 10)
-    private lazy var repsSlider = GreenSlider(minimumValue: 0, maximumValue: 50)
-    private lazy var timerSlider = GreenSlider(minimumValue: 0, maximumValue: 600)
-
-    private var setskStackView = UIStackView()  //horrizontal
-    private var repsStackView = UIStackView()   //horrizontal
-    private var timerStackView = UIStackView()  //horrizontal
-    
-    private var setsVerticalSV = UIStackView()
-    private var repsVerticalSV = UIStackView()
-    private var timerVerticalSV = UIStackView()
-    
-    private var verticalModuleStackView = UIStackView()     //all objects, full view
-    
-    //MARK: - Life cycle
+    //MARK: - Initialization + setUpViews
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpView()
         setConstraints()
+        setDelegates()
     }
     
     required init?(coder: NSCoder) {
@@ -111,22 +43,31 @@ class RepsOrTimerView: UIView {
     private func setUpView() {
         backgroundColor = .none
         translatesAutoresizingMaskIntoConstraints = false
-
+        chooseRepOrTimeLabel.textAlignment = .center
+        
         addSubview(repsOrTimerLabel)
         addSubview(backSubView)
 
-        setskStackView = UIStackView(arrangedSubviews: [setsLabel, setsNumberLabel], axis: .horizontal, distribution: .equalSpacing)
-        repsStackView = UIStackView(arrangedSubviews: [repsLabel, repsNumberLabel], axis: .horizontal, distribution: .equalSpacing)
-        timerStackView = UIStackView(arrangedSubviews: [timerLabel, timerNumberLabel], axis: .horizontal, distribution: .equalSpacing)
+        verticalStackView = UIStackView(arrangedSubviews: [setsView, chooseRepOrTimeLabel, repsView, timerView], axis: .vertical, spacing: 5)
         
-        setsVerticalSV = UIStackView(arrangedSubviews: [setskStackView, setsSlider], axis: .vertical, spacing: 6)
-        repsVerticalSV = UIStackView(arrangedSubviews: [repsStackView, repsSlider], axis: .vertical, spacing: 6)
-        timerVerticalSV = UIStackView(arrangedSubviews: [timerStackView, timerSlider], axis: .vertical, spacing: 6)
-        
-        verticalModuleStackView = UIStackView(arrangedSubviews: [setsVerticalSV, chooseRepOrTimeLabel, repsVerticalSV, timerVerticalSV], axis: .vertical, distribution: .equalSpacing)
-        backSubView.addSubview(verticalModuleStackView)
+        backSubView.addSubview(verticalStackView)
     }
-        
+    
+    private func setDelegates() {
+        setsView.delegate = self
+        repsView.delegate = self
+        timerView.delegate = self
+    }
+    
+    //reset sliders after succes saving
+    public func resetSliders() {
+        setsView.modifySliderWhenSaved()
+        repsView.modifySliderWhenSaved()
+        timerView.modifySliderWhenSaved()
+    }
+    
+
+//MARK: - LAYOUTS
     private func setConstraints() {
         NSLayoutConstraint.activate([
             repsOrTimerLabel.topAnchor.constraint(equalTo: self.topAnchor),
@@ -139,10 +80,34 @@ class RepsOrTimerView: UIView {
             backSubView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             backSubView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
-            verticalModuleStackView.topAnchor.constraint(equalTo: backSubView.topAnchor, constant: 20),
-            verticalModuleStackView.leadingAnchor.constraint(equalTo: backSubView.leadingAnchor, constant: 10),
-            verticalModuleStackView.trailingAnchor.constraint(equalTo: backSubView.trailingAnchor, constant: -15),
-            verticalModuleStackView.bottomAnchor.constraint(equalTo: backSubView.bottomAnchor, constant: -20)
+            verticalStackView.topAnchor.constraint(equalTo: backSubView.topAnchor, constant: 10),
+            verticalStackView.leadingAnchor.constraint(equalTo: backSubView.leadingAnchor, constant: 10),
+            verticalStackView.trailingAnchor.constraint(equalTo: backSubView.trailingAnchor, constant: -15),
+            verticalStackView.bottomAnchor.constraint(equalTo: backSubView.bottomAnchor, constant: -10)
         ])
     }
+}
+
+//MARK: - Slider Protocol
+
+extension RepsOrTimerView: SliderViewProtoc {
+    func changeValue(type: SliderTypes, value: Int) {
+        switch type {
+            
+        case .sets:
+            sets = value
+        case .reps:
+            reps = value
+            repsView.isActive = true
+            timerView.isActive = false
+            timer = 0
+        case .timer:
+            timer = value
+            timerView.isActive = true
+            repsView.isActive = false
+            reps = 0
+        }
+    }
+    
+    
 }

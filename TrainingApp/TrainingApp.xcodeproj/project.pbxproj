@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF0A5BDF2A40584D00D8C1DE /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0A5BDE2A40584D00D8C1DE /* UIViewControllerExtension.swift */; };
+		DF0AB13A2A3E34DB00FD027E /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0AB1392A3E34DB00FD027E /* ImageCollectionViewCell.swift */; };
+		DF0AB13C2A3E3A1500FD027E /* CollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0AB13B2A3E3A1500FD027E /* CollViewModel.swift */; };
+		DF262D0D2A3F36D100206023 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF262D0C2A3F36D100206023 /* WorkoutModel.swift */; };
+		DF262D0F2A3F429500206023 /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF262D0E2A3F429500206023 /* Date + Extension.swift */; };
+		DF262D122A3F4A9600206023 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF262D112A3F4A9600206023 /* RealmManager.swift */; };
 		DF302F6C2A3A05BB00E3CDE7 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF302F6B2A3A05BB00E3CDE7 /* UILabelExtension.swift */; };
 		DF302F702A3A0AB100E3CDE7 /* MainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF302F6F2A3A0AB100E3CDE7 /* MainTableView.swift */; };
 		DF302F722A3A0FFD00E3CDE7 /* StackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF302F712A3A0FFD00E3CDE7 /* StackViewExtension.swift */; };
@@ -30,15 +36,30 @@
 		DF8A19402A322599009FD3DF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8A193F2A322599009FD3DF /* UIColorExtension.swift */; };
 		DF8A19422A322BF6009FD3DF /* CalendarCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8A19412A322BF6009FD3DF /* CalendarCollectionView.swift */; };
 		DF8A19452A323189009FD3DF /* CalendarColectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8A19442A323189009FD3DF /* CalendarColectionViewCell.swift */; };
+		DF99D3422A4172D000152662 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF99D3412A4172D000152662 /* StartView.swift */; };
+		DF99FF4D2A40FA2000B357E6 /* StartWorkoutRepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF99FF4C2A40FA2000B357E6 /* StartWorkoutRepsViewController.swift */; };
 		DFD1906B2A3A54FC00CCA2F1 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD1906A2A3A54FC00CCA2F1 /* WorkoutTableViewCell.swift */; };
 		DFD190702A3B061600CCA2F1 /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD1906F2A3B061600CCA2F1 /* StatisticViewController.swift */; };
 		DFD190742A3B098A00CCA2F1 /* StatisticTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD190732A3B098A00CCA2F1 /* StatisticTableView.swift */; };
 		DFD190772A3B0B3900CCA2F1 /* StatisticCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD190762A3B0B3900CCA2F1 /* StatisticCell.swift */; };
 		DFD1907A2A3B49B800CCA2F1 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD190792A3B49B800CCA2F1 /* MainTabBarController.swift */; };
 		DFD1907F2A3B4F4A00CCA2F1 /* NewWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD1907E2A3B4F4A00CCA2F1 /* NewWorkoutViewController.swift */; };
+		DFD7412B2A3E556C00C27CBF /* Int + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7412A2A3E556C00C27CBF /* Int + Extension.swift */; };
+		DFD7412E2A3EEF4C00C27CBF /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7412D2A3EEF4C00C27CBF /* SliderView.swift */; };
+		DFD741312A3F097D00C27CBF /* SliderTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD741302A3F097D00C27CBF /* SliderTypes.swift */; };
+		DFF711662A3E13C000C6D5A7 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = DFF711652A3E13C000C6D5A7 /* Realm */; };
+		DFF711682A3E13C000C6D5A7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DFF711672A3E13C000C6D5A7 /* RealmSwift */; };
+		DFF7116B2A3E2BA700C6D5A7 /* BackGroundCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF7116A2A3E2BA700C6D5A7 /* BackGroundCollectionView.swift */; };
+		DFF7116D2A3E329F00C6D5A7 /* ImagesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF7116C2A3E329F00C6D5A7 /* ImagesCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DF0A5BDE2A40584D00D8C1DE /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		DF0AB1392A3E34DB00FD027E /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		DF0AB13B2A3E3A1500FD027E /* CollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollViewModel.swift; sourceTree = "<group>"; };
+		DF262D0C2A3F36D100206023 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
+		DF262D0E2A3F429500206023 /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
+		DF262D112A3F4A9600206023 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		DF302F6B2A3A05BB00E3CDE7 /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		DF302F6F2A3A0AB100E3CDE7 /* MainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableView.swift; sourceTree = "<group>"; };
 		DF302F712A3A0FFD00E3CDE7 /* StackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewExtension.swift; sourceTree = "<group>"; };
@@ -64,12 +85,19 @@
 		DF8A193F2A322599009FD3DF /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		DF8A19412A322BF6009FD3DF /* CalendarCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionView.swift; sourceTree = "<group>"; };
 		DF8A19442A323189009FD3DF /* CalendarColectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarColectionViewCell.swift; sourceTree = "<group>"; };
+		DF99D3412A4172D000152662 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		DF99FF4C2A40FA2000B357E6 /* StartWorkoutRepsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartWorkoutRepsViewController.swift; sourceTree = "<group>"; };
 		DFD1906A2A3A54FC00CCA2F1 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		DFD1906F2A3B061600CCA2F1 /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		DFD190732A3B098A00CCA2F1 /* StatisticTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticTableView.swift; sourceTree = "<group>"; };
 		DFD190762A3B0B3900CCA2F1 /* StatisticCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticCell.swift; sourceTree = "<group>"; };
 		DFD190792A3B49B800CCA2F1 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DFD1907E2A3B4F4A00CCA2F1 /* NewWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutViewController.swift; sourceTree = "<group>"; };
+		DFD7412A2A3E556C00C27CBF /* Int + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extension.swift"; sourceTree = "<group>"; };
+		DFD7412D2A3EEF4C00C27CBF /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
+		DFD741302A3F097D00C27CBF /* SliderTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTypes.swift; sourceTree = "<group>"; };
+		DFF7116A2A3E2BA700C6D5A7 /* BackGroundCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackGroundCollectionView.swift; sourceTree = "<group>"; };
+		DFF7116C2A3E329F00C6D5A7 /* ImagesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +105,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFF711682A3E13C000C6D5A7 /* RealmSwift in Frameworks */,
+				DFF711662A3E13C000C6D5A7 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF262D102A3F4A7800206023 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DF262D112A3F4A9600206023 /* RealmManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		DF515D662A3DF5B70095D054 /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,7 +154,9 @@
 				DFD190782A3B497900CCA2F1 /* NavigationModule */,
 				DF8A192C2A31294D009FD3DF /* MainModule */,
 				DFD1907B2A3B4ED900CCA2F1 /* NewWorkoutModeule */,
+				DF99FF482A40F98A00B357E6 /* StartWorkoutModeule */,
 				DFD1906C2A3B05A800CCA2F1 /* StatisticModeule */,
+				DF262D102A3F4A7800206023 /* Services */,
 				DF8A192F2A3129AC009FD3DF /* SupportingFiles */,
 				DF8A19342A32118C009FD3DF /* Extensions */,
 			);
@@ -135,6 +175,7 @@
 		DF8A192C2A31294D009FD3DF /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
+				DFD741322A3F367700C27CBF /* Models */,
 				DF8A192E2A312981009FD3DF /* Views */,
 				DF8A192D2A312973009FD3DF /* Controllers */,
 			);
@@ -177,6 +218,8 @@
 			children = (
 				DF515D662A3DF5B70095D054 /* UIElements */,
 				DF8A19352A3211CD009FD3DF /* UIKit */,
+				DFD7412A2A3E556C00C27CBF /* Int + Extension.swift */,
+				DF262D0E2A3F429500206023 /* Date + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -189,6 +232,7 @@
 				DF8A193F2A322599009FD3DF /* UIColorExtension.swift */,
 				DF302F6B2A3A05BB00E3CDE7 /* UILabelExtension.swift */,
 				DF302F712A3A0FFD00E3CDE7 /* StackViewExtension.swift */,
+				DF0A5BDE2A40584D00D8C1DE /* UIViewControllerExtension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -209,6 +253,39 @@
 				DFD1906A2A3A54FC00CCA2F1 /* WorkoutTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		DF99FF482A40F98A00B357E6 /* StartWorkoutModeule */ = {
+			isa = PBXGroup;
+			children = (
+				DF99FF4B2A40F9D500B357E6 /* Models */,
+				DF99FF4A2A40F9CE00B357E6 /* Views */,
+				DF99FF492A40F9BF00B357E6 /* Controllers */,
+			);
+			path = StartWorkoutModeule;
+			sourceTree = "<group>";
+		};
+		DF99FF492A40F9BF00B357E6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DF99FF4C2A40FA2000B357E6 /* StartWorkoutRepsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DF99FF4A2A40F9CE00B357E6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DF99D3412A4172D000152662 /* StartView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DF99FF4B2A40F9D500B357E6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		DFD1906C2A3B05A800CCA2F1 /* StatisticModeule */ = {
@@ -256,6 +333,7 @@
 		DFD1907B2A3B4ED900CCA2F1 /* NewWorkoutModeule */ = {
 			isa = PBXGroup;
 			children = (
+				DFD7412F2A3F096300C27CBF /* Models */,
 				DFD1907D2A3B4F0A00CCA2F1 /* Controllers */,
 				DFD1907C2A3B4EFD00CCA2F1 /* Views */,
 			);
@@ -268,6 +346,8 @@
 				DF4037612A3B5AB100208B82 /* NameView.swift */,
 				DF515D622A3DC12F0095D054 /* DateRepeatView.swift */,
 				DF515D642A3DD0280095D054 /* RepsOrTimerView.swift */,
+				DFD7412C2A3EEF3D00C27CBF /* Subviews */,
+				DFF711692A3E2B4D00C6D5A7 /* CollectionVIew */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -278,6 +358,41 @@
 				DFD1907E2A3B4F4A00CCA2F1 /* NewWorkoutViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DFD7412C2A3EEF3D00C27CBF /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				DFD7412D2A3EEF4C00C27CBF /* SliderView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		DFD7412F2A3F096300C27CBF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DFD741302A3F097D00C27CBF /* SliderTypes.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DFD741322A3F367700C27CBF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DF262D0C2A3F36D100206023 /* WorkoutModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DFF711692A3E2B4D00C6D5A7 /* CollectionVIew */ = {
+			isa = PBXGroup;
+			children = (
+				DFF7116A2A3E2BA700C6D5A7 /* BackGroundCollectionView.swift */,
+				DFF7116C2A3E329F00C6D5A7 /* ImagesCollectionView.swift */,
+				DF0AB1392A3E34DB00FD027E /* ImageCollectionViewCell.swift */,
+				DF0AB13B2A3E3A1500FD027E /* CollViewModel.swift */,
+			);
+			path = CollectionVIew;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +411,10 @@
 			dependencies = (
 			);
 			name = TrainingApp;
+			packageProductDependencies = (
+				DFF711652A3E13C000C6D5A7 /* Realm */,
+				DFF711672A3E13C000C6D5A7 /* RealmSwift */,
+			);
 			productName = TrainingApp;
 			productReference = DF8A19142A3114EA009FD3DF /* TrainingApp.app */;
 			productType = "com.apple.product-type.application";
@@ -324,6 +443,9 @@
 				Base,
 			);
 			mainGroup = DF8A190B2A3114EA009FD3DF;
+			packageReferences = (
+				DFF711642A3E13C000C6D5A7 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = DF8A19152A3114EA009FD3DF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -356,26 +478,39 @@
 				DF8A19332A31E9A5009FD3DF /* WeatherView.swift in Sources */,
 				DF515D632A3DC12F0095D054 /* DateRepeatView.swift in Sources */,
 				DF515D652A3DD0280095D054 /* RepsOrTimerView.swift in Sources */,
+				DFD741312A3F097D00C27CBF /* SliderTypes.swift in Sources */,
 				DFD1907A2A3B49B800CCA2F1 /* MainTabBarController.swift in Sources */,
 				DF8A19312A31C3B0009FD3DF /* CalendarViewGreen.swift in Sources */,
+				DF262D0F2A3F429500206023 /* Date + Extension.swift in Sources */,
 				DFD190702A3B061600CCA2F1 /* StatisticViewController.swift in Sources */,
+				DFD7412B2A3E556C00C27CBF /* Int + Extension.swift in Sources */,
 				DFD1907F2A3B4F4A00CCA2F1 /* NewWorkoutViewController.swift in Sources */,
 				DF3F2C872A3DF9CF0010CD99 /* BrownTextField.swift in Sources */,
+				DF262D122A3F4A9600206023 /* RealmManager.swift in Sources */,
 				DF8A19452A323189009FD3DF /* CalendarColectionViewCell.swift in Sources */,
 				DF8A19402A322599009FD3DF /* UIColorExtension.swift in Sources */,
 				DFD1906B2A3A54FC00CCA2F1 /* WorkoutTableViewCell.swift in Sources */,
 				DF8A19422A322BF6009FD3DF /* CalendarCollectionView.swift in Sources */,
+				DF99D3422A4172D000152662 /* StartView.swift in Sources */,
 				DF302F702A3A0AB100E3CDE7 /* MainTableView.swift in Sources */,
 				DF8A193E2A32258A009FD3DF /* UIFontExtension.swift in Sources */,
 				DF8A191C2A3114EA009FD3DF /* MainViewController.swift in Sources */,
+				DF0A5BDF2A40584D00D8C1DE /* UIViewControllerExtension.swift in Sources */,
+				DFF7116B2A3E2BA700C6D5A7 /* BackGroundCollectionView.swift in Sources */,
 				DF3F2C892A3DFFA00010CD99 /* GreenSlider.swift in Sources */,
 				DF302F722A3A0FFD00E3CDE7 /* StackViewExtension.swift in Sources */,
 				DFD190772A3B0B3900CCA2F1 /* StatisticCell.swift in Sources */,
+				DF0AB13C2A3E3A1500FD027E /* CollViewModel.swift in Sources */,
+				DF99FF4D2A40FA2000B357E6 /* StartWorkoutRepsViewController.swift in Sources */,
+				DFF7116D2A3E329F00C6D5A7 /* ImagesCollectionView.swift in Sources */,
 				DF8A19182A3114EA009FD3DF /* AppDelegate.swift in Sources */,
 				DF302F6C2A3A05BB00E3CDE7 /* UILabelExtension.swift in Sources */,
+				DFD7412E2A3EEF4C00C27CBF /* SliderView.swift in Sources */,
 				DF4037622A3B5AB100208B82 /* NameView.swift in Sources */,
+				DF262D0D2A3F36D100206023 /* WorkoutModel.swift in Sources */,
 				DFD190742A3B098A00CCA2F1 /* StatisticTableView.swift in Sources */,
 				DF3F2C832A3DF60D0010CD99 /* GreenButton.swift in Sources */,
+				DF0AB13A2A3E34DB00FD027E /* ImageCollectionViewCell.swift in Sources */,
 				DF8A191A2A3114EA009FD3DF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,6 +727,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DFF711642A3E13C000C6D5A7 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DFF711652A3E13C000C6D5A7 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF711642A3E13C000C6D5A7 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		DFF711672A3E13C000C6D5A7 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF711642A3E13C000C6D5A7 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DF8A190C2A3114EA009FD3DF /* Project object */;
 }

@@ -30,6 +30,18 @@ class NameVIew: UIView {
         addSubview(nameLabel)
         addSubview(textField)
     }
+    
+    
+    //get acces to the value of the textField
+    public func getValueFromTextField() -> String {
+        guard let text = textField.text else {return ""}
+        return text
+    }
+    
+    //deleting text after succes saving
+    public func deleteValueFromTextField() {
+        textField.text = ""
+    }
         
     private func setConstraints() {
         NSLayoutConstraint.activate([

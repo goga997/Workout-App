@@ -37,7 +37,7 @@ extension CalendarViewGreen {
         NSLayoutConstraint.activate([
             collectionView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            collectionView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.70),
+            collectionView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7),
             collectionView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.9),
         ])
     }

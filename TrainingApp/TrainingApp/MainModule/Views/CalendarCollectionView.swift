@@ -20,7 +20,6 @@ class CalendarCollectionView: UICollectionView {
         setUpLayouts()
         setDelegates()
         register(CalendarColectionViewCell.self, forCellWithReuseIdentifier: idCalendarCell)
-        
     }
     
     required init?(coder: NSCoder) {

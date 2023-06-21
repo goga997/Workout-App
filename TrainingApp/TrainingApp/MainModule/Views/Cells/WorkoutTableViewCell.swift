@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol CellActionDelegate: AnyObject {
+    func didButtonTapped()
+}
+
 class WorkoutTableViewCell: UITableViewCell {
+        
+    var actionDelegate: CellActionDelegate?
     
     static let idTableViewCell = "idTableViewCell"
     
@@ -110,7 +116,9 @@ class WorkoutTableViewCell: UITableViewCell {
     }
     
     @objc private func startButtonTapped() {
-        print("tap")
+        print("tap now")
+        actionDelegate?.didButtonTapped()
+        
     }
     
 }

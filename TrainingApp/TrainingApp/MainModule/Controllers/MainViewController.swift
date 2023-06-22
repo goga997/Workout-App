@@ -76,6 +76,13 @@ class MainViewController: UIViewController {
     
 }
 
+extension MainViewController: CalendarViewProtocol {
+    func selectItem(date: Date) {
+        print(date)
+    }
+}
+
+
 //MARK: - Layouts
 
 typealias MainViewControllerLayouts = MainViewController
@@ -85,6 +92,8 @@ extension MainViewControllerLayouts {
         view.backgroundColor = .specialBackground
         
         view.addSubview(calendarViewGreen)
+        calendarViewGreen.setDelegate(self)
+        
         view.addSubview(userPhotoImageView)
         view.addSubview(userNameLabel)
         view.addSubview(addWorkOutButton)
@@ -166,12 +175,3 @@ extension MainViewControllerLayouts {
     }
 }
 
-extension MainViewController: CellActionDelegate {
-    func didButtonTapped() {
-        let startVC = StartWorkoutRepsViewController()
-        startVC.modalPresentationStyle = .fullScreen
-        present(startVC, animated: true)
-    }
-    
-    
-}

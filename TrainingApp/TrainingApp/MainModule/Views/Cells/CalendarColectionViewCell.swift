@@ -11,7 +11,6 @@ class CalendarColectionViewCell: UICollectionViewCell {
     
     private let dayOfWeekLabel: UILabel = {
        let label = UILabel()
-        label.text = "Mo"
         label.font = .robotoBold16()
         label.textColor = .white
         label.textAlignment = .center
@@ -21,7 +20,6 @@ class CalendarColectionViewCell: UICollectionViewCell {
     
     private let numberOfDayLabel: UILabel = {
        let label = UILabel()
-        label.text = "23"
         label.font = .robotoBold20()
         label.textColor = .white
         label.textAlignment = .center
@@ -58,6 +56,11 @@ class CalendarColectionViewCell: UICollectionViewCell {
         
         self.addSubview(dayOfWeekLabel)
         self.addSubview(numberOfDayLabel)
+    }
+    
+    public func setDateForCell(numberOfDay: String, dayOfWeek: String) {
+        self.dayOfWeekLabel.text = dayOfWeek
+        self.numberOfDayLabel.text = numberOfDay
     }
 }
 

@@ -13,4 +13,36 @@ extension Date {
         let weekDay = calendar.component(.weekday, from: self)
         return weekDay
     }
+    
+    
+    func localDate() -> Date {
+        let timeZoneOffset = Double(TimeZone.current.secondsFromGMT(for: self))
+        let localDate = Calendar.current.date(byAdding: .second, value: Int(timeZoneOffset), to: self) ?? Date()
+        return localDate
+    }
+    
+    
+    func getWeekArray() -> [[String]] {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_GB")
+        formatter.dateFormat = "EEEEEE"
+        let calendar = Calendar.current
+        
+        var weekArray: [[String]] = [[], []]
+        
+        for index in -6...0 {
+            let date = calendar.date(byAdding: .day, value: index, to: self) ?? Date()
+            
+            let day = calendar.component(.day, from: date)
+            weekArray[1].append("\(day)")
+            let weekDay = formatter.string(from: date)
+            weekArray[0].append(weekDay)
+        }
+        return weekArray
+    }
+    
+    func offsetDays(day: Int) -> Date {
+        let offsetday = Calendar.current.date(byAdding: .day, value: -day, to: self) ?? Date()
+        return offsetday
+    }
 }

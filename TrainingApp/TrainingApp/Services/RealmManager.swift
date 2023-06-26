@@ -22,5 +22,9 @@ class RealmManager {
         }
     }
     
+    func getObjectsWorkoutModel() -> Results<WorkoutModel> {
+        realm.objects(WorkoutModel.self)
+    }
+    
     
 }

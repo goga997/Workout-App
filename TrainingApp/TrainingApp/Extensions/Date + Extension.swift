@@ -41,8 +41,31 @@ extension Date {
         return weekArray
     }
     
+    
     func offsetDays(day: Int) -> Date {
         let offsetday = Calendar.current.date(byAdding: .day, value: -day, to: self) ?? Date()
         return offsetday
+    }
+    
+    
+    func startEndDate() -> (start: Date, end: Date) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        
+        let calendar = Calendar.current
+//        let day = calendar.component(.day, from: self)
+//        let month = calendar.component(.month, from: self)
+//        let year = calendar.component(.year, from: self)
+//        let dateStart = formatter.date(from: "\(year)/\(month)/\(day)") ?? Date()
+        let stringDate = formatter.string(from: self)
+        let totalDate = formatter.date(from: stringDate) ?? Date()
+        
+        let local = totalDate.localDate()
+        let dateEnd: Date = {
+            let components = DateComponents(day: 1)
+            return calendar.date(byAdding: components, to: local) ?? Date()
+        }()
+         
+        return (local , dateEnd)
     }
 }

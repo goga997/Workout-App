@@ -54,6 +54,9 @@ class MainViewController: UIViewController {
     private let workoutTodayLabel = UILabel(text: "Workout Today")
     private let mainTableView = MainTableView()
     
+    //Array that contains data from Realm
+    private var workoutArray = [WorkoutModel]()
+    
     // MARK: - Life Cycle
     
     override func viewDidLayoutSubviews() {
@@ -74,11 +77,26 @@ class MainViewController: UIViewController {
         present(newWorkoutVC, animated: true)
     }
     
+    private func getWorkouts(date: Date) {
+        let weekDay = date.getWeekDayNumber()
+        let dateStart = date.startEndDate().start
+        let dateEnd = date.startEndDate().end
+        
+        let predicateRepeat = NSPredicate(format: "numberOfDay = \(weekDay) AND workoutRepeat = true")
+        let predicateUnrepeat = NSPredicate(format: "workoutRepeat = false AND workoutDate BETWEEN %@", [dateStart, dateEnd])
+        let compound = NSCompoundPredicate(type: .or , subpredicates: [predicateRepeat, predicateUnrepeat])
+        
+        let resultArray = RealmManager.shared.getObjectsWorkoutModel()
+        let filteredArray = resultArray.filter(compound).sorted(byKeyPath: "workoutName")
+        workoutArray = filteredArray.map { $0 }
+    }
 }
+
+    //MARK: CalendarViewProtocol
 
 extension MainViewController: CalendarViewProtocol {
     func selectItem(date: Date) {
-        print(date)
+        print(date.startEndDate().start, date.startEndDate().end)
     }
 }
 

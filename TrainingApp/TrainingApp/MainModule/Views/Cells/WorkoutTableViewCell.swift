@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol WorkoutTableViewCellProtocol: AnyObject {
+    func startButtonTapped(model: WorkoutModel)
+}
 
 class WorkoutTableViewCell: UITableViewCell {
-                
+        
+    weak var workutCellDelegate: WorkoutTableViewCellProtocol?
+    
     static let idTableViewCell = "idTableViewCell"
     
     private let backgroundCell: UIView = {
@@ -66,9 +71,9 @@ class WorkoutTableViewCell: UITableViewCell {
     
     private lazy var startButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("START", for: .normal)
-        button.backgroundColor = .specialYellow
-        button.setTitleColor(.specialDarkGreen, for: .normal)
+//        button.setTitle("START", for: .normal)
+//        button.backgroundColor = .specialYellow
+//        button.setTitleColor(.specialDarkGreen, for: .normal)
         button.addShadowToView()
         button.layer.cornerRadius = 10
         button.titleLabel?.font = .robotoBold16()
@@ -78,6 +83,8 @@ class WorkoutTableViewCell: UITableViewCell {
     }()
     
     private var labelsStackView = UIStackView()
+    
+    private var workoutModelExemplar = WorkoutModel()
     
     //MARK: - INITIALIZATION
     
@@ -110,8 +117,39 @@ class WorkoutTableViewCell: UITableViewCell {
         contentView.addSubview(startButton)
     }
     
+    //Start Button Tapped
     @objc private func startButtonTapped() {
+        workutCellDelegate?.startButtonTapped(model: workoutModelExemplar)
+    }
+    
+    //Configure Cell
+    public func configure(model: WorkoutModel) {
+        self.workoutModelExemplar = model
         
+        workoutNameLabel.text = model.workoutName
+        
+        if model.workoutTimer == 0 {
+            workoutRepsNameLabel.text = "Reps: \(model.workoutReps)"
+        } else {
+            workoutRepsNameLabel.text = "Timer: \(model.workoutTimer.getTimeFromSeconds() )"
+        }
+        
+        workoutSetsNameLabel.text = "Sets: \(model.workoutSets)"
+        
+        if model.workoutStatus {
+            startButton.setTitle("COMPLETED", for: .normal)
+            startButton.tintColor = .white
+            startButton.backgroundColor = .specialDarkGreen
+            startButton.isEnabled = false
+        } else {
+            startButton.setTitle("Start", for: .normal)
+            startButton.tintColor = .specialDarkGreen
+            startButton.backgroundColor = .specialYellow
+            startButton.isEnabled = true
+        }
+        
+        guard let imageData = model.workoutImage, let image = UIImage(data: imageData) else { return }
+        workoutImageView.image = image.withRenderingMode(.alwaysTemplate)
     }
     
 }

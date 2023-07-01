@@ -35,8 +35,11 @@ class StatisticViewController: UIViewController {
     
     private let exercicesLabel = UILabel(text: "Exercices")
     private let statisticTableView = StatisticTableView()
-
     
+    private var workoutArray = [WorkoutModel]()
+    private var differenceArray = [DifferenceWorkout]()
+
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,12 +57,25 @@ class StatisticViewController: UIViewController {
     }
 
     @objc private func segmentChanged() {
-        
         if segmentedControll.selectedSegmentIndex == 0 {
             print("week selected")
         } else {
             print("month selected")
         }
+    }
+    
+    private func getWorkoutName() -> [String] {
+        var nameArray = [String]()
+        
+        let allWorkouts = RealmManager.shared.getObjectsWorkoutModel()
+        
+        for workoutModel in allWorkouts {
+            if !nameArray.contains(workoutModel.workoutName) {
+                nameArray.append(workoutModel.workoutName)
+            }
+        }
+        
+        return nameArray
     }
 }
 

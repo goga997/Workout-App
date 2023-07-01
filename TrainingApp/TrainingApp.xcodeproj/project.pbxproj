@@ -20,6 +20,7 @@
 		DF3F2C872A3DF9CF0010CD99 /* BrownTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3F2C862A3DF9CF0010CD99 /* BrownTextField.swift */; };
 		DF3F2C892A3DFFA00010CD99 /* GreenSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3F2C882A3DFFA00010CD99 /* GreenSlider.swift */; };
 		DF4037622A3B5AB100208B82 /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4037612A3B5AB100208B82 /* NameView.swift */; };
+		DF4CB91E2A4A3BBA0060523A /* DifferenceWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB91D2A4A3BBA0060523A /* DifferenceWorkout.swift */; };
 		DF515D632A3DC12F0095D054 /* DateRepeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF515D622A3DC12F0095D054 /* DateRepeatView.swift */; };
 		DF515D652A3DD0280095D054 /* RepsOrTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF515D642A3DD0280095D054 /* RepsOrTimerView.swift */; };
 		DF8A19182A3114EA009FD3DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8A19172A3114EA009FD3DF /* AppDelegate.swift */; };
@@ -67,6 +68,7 @@
 		DF3F2C862A3DF9CF0010CD99 /* BrownTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrownTextField.swift; sourceTree = "<group>"; };
 		DF3F2C882A3DFFA00010CD99 /* GreenSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenSlider.swift; sourceTree = "<group>"; };
 		DF4037612A3B5AB100208B82 /* NameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
+		DF4CB91D2A4A3BBA0060523A /* DifferenceWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferenceWorkout.swift; sourceTree = "<group>"; };
 		DF515D622A3DC12F0095D054 /* DateRepeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRepeatView.swift; sourceTree = "<group>"; };
 		DF515D642A3DD0280095D054 /* RepsOrTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsOrTimerView.swift; sourceTree = "<group>"; };
 		DF8A19142A3114EA009FD3DF /* TrainingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +121,14 @@
 				DF262D112A3F4A9600206023 /* RealmManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		DF4CB91C2A4A3B940060523A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DF4CB91D2A4A3BBA0060523A /* DifferenceWorkout.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		DF515D662A3DF5B70095D054 /* UIElements */ = {
@@ -291,6 +301,7 @@
 		DFD1906C2A3B05A800CCA2F1 /* StatisticModeule */ = {
 			isa = PBXGroup;
 			children = (
+				DF4CB91C2A4A3B940060523A /* Model */,
 				DFD1906E2A3B05E400CCA2F1 /* Controllers */,
 				DFD1906D2A3B05DA00CCA2F1 /* Views */,
 			);
@@ -507,6 +518,7 @@
 				DF302F6C2A3A05BB00E3CDE7 /* UILabelExtension.swift in Sources */,
 				DFD7412E2A3EEF4C00C27CBF /* SliderView.swift in Sources */,
 				DF4037622A3B5AB100208B82 /* NameView.swift in Sources */,
+				DF4CB91E2A4A3BBA0060523A /* DifferenceWorkout.swift in Sources */,
 				DF262D0D2A3F36D100206023 /* WorkoutModel.swift in Sources */,
 				DFD190742A3B098A00CCA2F1 /* StatisticTableView.swift in Sources */,
 				DF3F2C832A3DF60D0010CD99 /* GreenButton.swift in Sources */,

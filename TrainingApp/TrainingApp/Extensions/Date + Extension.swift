@@ -47,6 +47,11 @@ extension Date {
         return offsetday
     }
     
+    func offsetDate(month: Int) -> Date {
+        let offsetMonth = Calendar.current.date(byAdding: .month, value: -month, to: self) ?? Date()
+        return offsetMonth
+    }
+    
     
     func startEndDate() -> (start: Date, end: Date) {
         let formatter = DateFormatter()

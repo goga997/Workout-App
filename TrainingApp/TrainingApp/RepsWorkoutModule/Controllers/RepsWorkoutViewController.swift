@@ -1,13 +1,13 @@
 //
-//  StartWorkoutRepsViewController.swift
+//  RepsWorkoutViewController.swift
 //  TrainingApp
 //
-//  Created by Grigore on 20.06.2023.
+//  Created by Grigore on 01.07.2023.
 //
 
 import UIKit
 
-class StartWorkoutRepsViewController: UIViewController {
+class RepsWorkoutViewController: UIViewController {
     
     private let startWorkoutLabel = UILabel(text: "START WORKOUT", font: .robotoBold24(), textColor: .specialGray)
     
@@ -29,16 +29,23 @@ class StartWorkoutRepsViewController: UIViewController {
     
     private let detailsLabel = UILabel(text: "Detailes")
     
-    private let infoView = StartView()
+    private let infoView = WorkoutParametersView()
     
     private lazy var finishButton = GreenButton(text: "FINISH")
     
+    private var workoutModel = WorkoutModel()
+    
+    private let customAlert = CustomAlert()
+    
+    private var numberOfSet = 1
+        
     //MARK: - LIFE CYCLE + viewSetUp
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
         setConstraints()
+        infoView.delegate = self
     }
     
     private func setUpView() {
@@ -48,17 +55,42 @@ class StartWorkoutRepsViewController: UIViewController {
         view.addSubview(closeButton)
         view.addSubview(womanImageView)
         view.addSubview(detailsLabel)
+        
+        infoView.refreshLabelsValue(model: workoutModel, numberOfSet: numberOfSet)
         view.addSubview(infoView)
+        
         view.addSubview(finishButton)
     }
  
     @objc private func closeButtonTapped() {
-        print("close")
+        dismiss(animated: true)
     }
     
+    public func setWorkoutModel(_ model: WorkoutModel) {
+        workoutModel = model 
+    }
 }
 
-extension StartWorkoutRepsViewController {
+// PROTOCOL NextSet
+extension RepsWorkoutViewController: NextSetProtocol {
+    func nextSetTapped() {
+        if numberOfSet < workoutModel.workoutSets {
+            numberOfSet += 1
+            infoView.refreshLabelsValue(model: workoutModel, numberOfSet: numberOfSet)
+        } else {
+            presentSimpleAlert(title: "Error", message: "You have to finish your Workout")
+        }
+    }
+    
+    func editingTapped() {
+        customAlert.presentCustomAlert(viewController: self, repsOrTimer: "Reps") { sets, reps in
+            print(sets, reps)
+        }
+    }
+}
+
+//LAYOUTS
+extension RepsWorkoutViewController {
     private func setConstraints() {
         NSLayoutConstraint.activate([
             startWorkoutLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
@@ -92,5 +124,3 @@ extension StartWorkoutRepsViewController {
         ])
     }
 }
-
-

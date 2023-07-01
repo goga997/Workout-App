@@ -81,6 +81,7 @@ class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         
         selectItem(date: Date())
+        mainTableView.reloadData()
     }
     
     //MARK: Functionality
@@ -145,10 +146,16 @@ extension MainViewController: WorkoutTableViewCellProtocol {
     func startButtonTapped(model: WorkoutModel) {
         if model.workoutTimer == 0 {
             print("ecran reps")
-            let start = StartWorkoutRepsViewController()
-            present(start, animated: true)
+            let reps = RepsWorkoutViewController()
+            reps.modalPresentationStyle = .fullScreen
+            reps.setWorkoutModel(model)
+            present(reps, animated: true)
         } else {
             print("ecran timer")
+            let timer = TimerWorkoutViewController()
+            timer.modalPresentationStyle = .fullScreen
+            timer.setWorkoutModel(model)
+            present(timer, animated: true)
         }
     }
 }

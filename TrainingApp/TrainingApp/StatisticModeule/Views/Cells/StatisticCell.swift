@@ -84,6 +84,21 @@ class StatisticCell: UITableViewCell {
         
         self.addSubview(lineDownView)
     }
+    
+    public func configure(differenceWorkout: DifferenceWorkout) {
+        workoutNameLabel.text = differenceWorkout.name
+        statisticsBeforeNumberLabel.text = "Before: \(differenceWorkout.firstReps)"
+        statisticsNowNumberLabel.text  = "Now: \(differenceWorkout.lastReps)"
+        
+        let difference = differenceWorkout.lastReps - differenceWorkout.firstReps
+        differenceLabel.text = "\(difference)"
+        
+        switch difference {
+        case ..<0: differenceLabel.textColor = .specialYellow
+        case 1...: differenceLabel.textColor = .specialGreen
+        default: differenceLabel.textColor = .specialGray
+        }
+    }
 }
 
 //MARK: - CONSTRAINTS

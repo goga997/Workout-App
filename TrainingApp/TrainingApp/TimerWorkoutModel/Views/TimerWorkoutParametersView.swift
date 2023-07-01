@@ -1,23 +1,22 @@
 //
-//  File.swift
+//  TimerWorkoutParameters.swift
 //  TrainingApp
 //
-//  Created by Grigore on 20.06.2023.
+//  Created by Grigore on 01.07.2023.
 //
 
 import UIKit
 
-class StartView: UIView {
-    
+class TimerWorkoutParametersView: UIView {
     private let nameWorkoutLabel = UILabel(text: "Biceps", font: .robotoBold24(), textColor: .specialGray)
     
     private let setsLabel = UILabel(text: "Sets", font: .robotoMedium18(), textColor: .specialGray)
     
     private let numberSets = UILabel(text: "1/4", font: .robotoMedium24(), textColor: .specialGray)
     
-    private let contextLabel = UILabel(text: "Reps", font: .robotoMedium18(), textColor: .specialGray)
+    private let contextLabel = UILabel(text: "Time of Set", font: .robotoMedium18(), textColor: .specialGray)
     
-    private let numberReps = UILabel(text: "20", font: .robotoMedium24(), textColor: .specialGray)
+    private let numberReps = UILabel(text: "1 min 20 sec", font: .robotoMedium24(), textColor: .specialGray)
     
     private let lineDownView: UIView = {
        let view = UIView()
@@ -36,16 +35,7 @@ class StartView: UIView {
         let button = UIButton(type: .system)
         button.backgroundColor = .none
         button.tintColor = .specialGray
-        
         button.setTitle("Editing", for: .normal)
-        button.imageEdgeInsets = .init(top: 0,
-                                       left: 0,
-                                       bottom: 0,
-                                       right: 3)
-        button.titleEdgeInsets = .init(top: 0,
-                                       left: 5,
-                                       bottom: 0,
-                                       right: 0)
         button.titleLabel?.font = .robotoMedium16()
         button.setImage(UIImage(named: "editing"), for: .normal)
         button.addTarget(self, action: #selector(editingButtonTapped), for: .touchUpInside)
@@ -61,7 +51,7 @@ class StartView: UIView {
 //        button.addShadowToView()
         button.layer.cornerRadius = 10
         button.titleLabel?.font = .robotoBold16()
-        button.addTarget(self, action: #selector(nextStepButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(nextSetButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -97,17 +87,16 @@ class StartView: UIView {
         self.addSubview(nextSeTButton)
     }
     
-    @objc private func nextStepButtonTapped() {
+    @objc private func nextSetButtonTapped() {
         print("tap works")
     }
     
     @objc private func editingButtonTapped() {
         print("tap eiditing")
     }
-    
 }
 
-extension StartView {
+extension TimerWorkoutParametersView {
     private func setConstraints() {
         NSLayoutConstraint.activate([
             nameWorkoutLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -128,7 +117,7 @@ extension StartView {
             
             contextLabel.topAnchor.constraint(equalTo: lineDownView.bottomAnchor, constant: 30),
             contextLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
-            contextLabel.widthAnchor.constraint(equalToConstant: 60),
+            contextLabel.widthAnchor.constraint(equalToConstant: 100),
             
             numberReps.topAnchor.constraint(equalTo: lineDownView.bottomAnchor, constant: 25),
             numberReps.leadingAnchor.constraint(equalTo: contextLabel.trailingAnchor),
@@ -148,7 +137,6 @@ extension StartView {
             nextSeTButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             nextSeTButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85),
             nextSeTButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.16)
-            
         ])
     }
 }

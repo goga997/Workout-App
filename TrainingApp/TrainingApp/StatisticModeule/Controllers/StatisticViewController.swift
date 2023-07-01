@@ -47,6 +47,14 @@ class StatisticViewController: UIViewController {
         setConstarints()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setStartScreen()
+    }
+    
+    //MARK: - Functionallity
+    
     private func setUpView() {
         view.backgroundColor = .specialBackground
         
@@ -57,11 +65,19 @@ class StatisticViewController: UIViewController {
     }
 
     @objc private func segmentChanged() {
+        let todayDate = Date()
+        differenceArray = [DifferenceWorkout]()
+        
         if segmentedControll.selectedSegmentIndex == 0 {
             print("week selected")
+            let dateStart = todayDate.offsetDays(day: 7)
+            getDifferenceModel(dateStart: dateStart)
         } else {
             print("month selected")
+            let dateStart = todayDate.offsetDate(month: 1)
+            getDifferenceModel(dateStart: dateStart)
         }
+        statisticTableView.reloadData()
     }
     
     private func getWorkoutName() -> [String] {
@@ -74,10 +90,35 @@ class StatisticViewController: UIViewController {
                 nameArray.append(workoutModel.workoutName)
             }
         }
-        
         return nameArray
     }
+    
+    private func getDifferenceModel(dateStart: Date) {
+        let dateEnd = Date()
+        let nameArray = getWorkoutName()
+        let allWorkouts = RealmManager.shared.getObjectsWorkoutModel()
+        
+        for name in nameArray {
+            let predicateDifference = NSPredicate(format: "workoutName = '\(name)' AND workoutDate BETWEEN %@", [dateStart, dateEnd])
+            let filtredArray = allWorkouts.filter(predicateDifference).sorted(byKeyPath: "workoutDate")
+            workoutArray = filtredArray.map { $0 }
+            
+            guard let last = workoutArray.last?.workoutReps,
+                  let first = workoutArray.first?.workoutReps else { return }
+            let differenceWorkout = DifferenceWorkout(name: name , firstReps: first, lastReps: last)
+            differenceArray.append(differenceWorkout )
+        }
+        statisticTableView.setDifferenceArray(array: differenceArray)
+    }
+    
+    private func setStartScreen() {
+        let todayDate = Date()
+        differenceArray = [DifferenceWorkout]()
+        getDifferenceModel(dateStart: todayDate.offsetDays(day: 7))
+        statisticTableView.reloadData()
+    }
 }
+
 
 //LAYOUTS
 

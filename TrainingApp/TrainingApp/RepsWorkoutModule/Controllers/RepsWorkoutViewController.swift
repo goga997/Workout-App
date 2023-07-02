@@ -60,10 +60,23 @@ class RepsWorkoutViewController: UIViewController {
         view.addSubview(infoView)
         
         view.addSubview(finishButton)
+        finishButton.addTarget(self, action: #selector(finishButtonTapped), for: .touchUpInside)
     }
  
     @objc private func closeButtonTapped() {
         dismiss(animated: true)
+    }
+    
+    @objc private func finishButtonTapped() {
+        if numberOfSet == workoutModel.workoutSets {
+            dismiss(animated: true)
+            RealmManager.shared.setTrueStatusWorkoutModelForFinish(model: workoutModel)
+        } else {
+            self.presentAlertForFinishButton(title: "Warning",
+                                             message: "You have not finished your workout") {
+                self.dismiss(animated: true)
+            }
+        }
     }
     
     public func setWorkoutModel(_ model: WorkoutModel) {
@@ -83,8 +96,13 @@ extension RepsWorkoutViewController: NextSetProtocol {
     }
     
     func editingTapped() {
-        customAlert.presentCustomAlert(viewController: self, repsOrTimer: "Reps") { sets, reps in
-            print(sets, reps)
+        customAlert.presentCustomAlert(viewController: self, repsOrTimer: "Reps") { [weak self] sets, reps in
+            guard let self = self else {return}
+            if sets != "" && reps != "" {
+                guard let numberOfSets = Int(sets), let numberOfReps = Int(reps) else { return }
+                RealmManager.shared.updateSetsRepsWorkoutModel(model: self.workoutModel, sets: numberOfSets, reps: numberOfReps)
+                self.infoView.refreshLabelsValue(model: self.workoutModel, numberOfSet: self.numberOfSet)
+            }
         }
     }
 }

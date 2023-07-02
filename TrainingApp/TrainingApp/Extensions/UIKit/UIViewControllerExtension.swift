@@ -18,4 +18,18 @@ extension UIViewController {
         present(alertController, animated: true)
     }
     
+    func presentAlertForFinishButton(title: String, message: String?, completionHandler: @escaping () -> Void) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        
+        let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+            completionHandler()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+    }
+    
 }

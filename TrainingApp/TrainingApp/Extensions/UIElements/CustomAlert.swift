@@ -30,7 +30,13 @@ class CustomAlert {
     private let setsTextField = BrownTextField()
     private let repsTextField = BrownTextField()
     
+    private var buttonAction: ((String, String) -> Void)?
+    
+    //Func
     func presentCustomAlert(viewController: UIViewController, repsOrTimer: String, completion: @escaping (String, String) -> Void) {
+        
+        registerForKeyboardNotification()
+        
         guard let parrentView = viewController.view else { return }
         mainView = parrentView
         
@@ -88,6 +94,7 @@ class CustomAlert {
         okButton.addTarget(self, action: #selector(okButtonTapped), for: .touchUpInside)
         alertView.addSubview(okButton)
         
+        buttonAction = completion
         
         //Animation
         UIView.animate(withDuration: 0.3) {
@@ -99,15 +106,17 @@ class CustomAlert {
                 }
             }
         }
-
     }
     
     @objc private func okButtonTapped() {
         guard let setsNumber = setsTextField.text, let repsNumber = repsTextField.text else { return }
+        
+        buttonAction?(setsNumber, repsNumber)
+        
         guard let targetView = mainView else { return }
         
         UIView.animate(withDuration: 0.3) {
-            self.alertView.frame = CGRect(x: 40, y: targetView.frame.height, width: targetView.frame.width - 80, height: 420)
+            self.alertView.frame = CGRect(x: 40, y: -targetView.frame.height, width: targetView.frame.width - 80, height: 420)
         } completion: { _ in
             UIView.animate(withDuration: 0.3) {
                 self.transparentBackView.alpha = 0
@@ -116,12 +125,41 @@ class CustomAlert {
                     self.alertView.removeFromSuperview()
                     self.transparentBackView.removeFromSuperview()
                     self.scrollView.removeFromSuperview()
+                    self.setsTextField.text = ""
+                    self.repsTextField.text = ""
+                    self.removeForKeyboardNotification()
                 }
             }
-
         }
+    }
+    
+    
+    private func registerForKeyboardNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(kbWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(kbWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    private func removeForKeyboardNotification() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func kbWillShow() {
+        scrollView.contentOffset = CGPoint(x: 0, y: 100)
+    }
+    
+    @objc private func kbWillHide() {
+        scrollView.contentOffset = CGPoint.zero
 
     }
+    
 }
 
 

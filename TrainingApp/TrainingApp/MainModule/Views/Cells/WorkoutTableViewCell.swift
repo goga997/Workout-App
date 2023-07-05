@@ -149,7 +149,7 @@ class WorkoutTableViewCell: UITableViewCell {
         }
         
         guard let imageData = model.workoutImage, let image = UIImage(data: imageData) else { return }
-        workoutImageView.image = image.withRenderingMode(.alwaysTemplate)
+        workoutImageView.image = image.withTintColor(.black, renderingMode: .alwaysTemplate)
     }
     
 }

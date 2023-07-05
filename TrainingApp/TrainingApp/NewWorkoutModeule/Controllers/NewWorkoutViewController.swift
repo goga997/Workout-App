@@ -26,12 +26,13 @@ class NewWorkoutViewController: UIViewController {
     private let backGroundCollView = BackGroundCollectionView()
     private lazy var saveButton = GreenButton(text: "SAVE")
     private var stackView = UIStackView()
+        
+    var imaginePr: String?
+    
     
     //Model Object
     private var workoutModel = WorkoutModel()
-    
-    private var imageToSave = UIImage(named: ImagesCollectionView.extractedImage?.imageName ?? "closeButton")
-    
+        
     //MARK: - Life cycle + setUpView
     
     override func viewDidLoad() {
@@ -52,6 +53,8 @@ class NewWorkoutViewController: UIViewController {
         view.addSubview(stackView)
         view.addSubview(chooseImageLabel)
         view.addSubview(backGroundCollView)
+        backGroundCollView.setDelegate(self)
+
         view.addSubview(saveButton)
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
@@ -90,7 +93,9 @@ class NewWorkoutViewController: UIViewController {
         workoutModel.workoutReps = repsOrTimerView.reps
         workoutModel.workoutTimer = repsOrTimerView.timer
         
-        guard let imageData = imageToSave?.pngData() else { return }
+        
+        let imagine = UIImage(named: imaginePr ?? "colection1")
+        guard let imageData = imagine?.pngData() else { return }
         workoutModel.workoutImage = imageData
     }
     
@@ -115,6 +120,15 @@ class NewWorkoutViewController: UIViewController {
         dateRepeatView.resetDateAndRepeatSwitch()
         repsOrTimerView.resetSliders()
     }
+}
+
+//MARK: ImagineProtocol
+extension NewWorkoutViewController: ImagineProtocol {
+    func selectItem(imagine: String) {
+        self.imaginePr = imagine
+    }
+    
+    
 }
 
 //MARK: - LAYOUTS
@@ -153,3 +167,5 @@ extension NewWorkoutViewController {
         ])
     }
 }
+
+    

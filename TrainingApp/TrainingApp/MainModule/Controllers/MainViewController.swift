@@ -81,7 +81,7 @@ class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         
         selectItem(date: Date())
-        mainTableView.reloadData()
+        mainTableView.reloadData() 
     }
     
     //MARK: Functionality
@@ -122,9 +122,7 @@ class MainViewController: UIViewController {
 //MARK: CalendarViewProtocol
 extension MainViewController: CalendarViewProtocol {
     func selectItem(date: Date) {
-        //        print(date.startEndDate().start, date.startEndDate().end)
         getWorkouts(date: date)
-        //        print(workoutArray)
         mainTableView.setWorkoutArray(array: workoutArray )
         mainTableView.reloadData()
         checkWorkoutToday()

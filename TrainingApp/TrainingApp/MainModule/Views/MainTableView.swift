@@ -45,7 +45,6 @@ class MainTableView: UITableView {
         workoutArray = array
     }
     
-    
 }
 
 //DATA SOURCE

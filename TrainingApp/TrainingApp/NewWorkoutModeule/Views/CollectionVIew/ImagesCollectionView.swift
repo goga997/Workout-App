@@ -6,22 +6,21 @@
 //
 
 import UIKit
+protocol ImagineProtocol: AnyObject {
+    func selectItem(imagine: String)
+}
 
 class ImagesCollectionView: UICollectionView {
+        
+    weak var imagineDelegate: ImagineProtocol?
     
-    let images: [ImageForNewWorkout] = [
-        ImageForNewWorkout(imageName: "colection1"),
-        ImageForNewWorkout(imageName: "colection2"),
-        ImageForNewWorkout(imageName: "collection3"),
-        ImageForNewWorkout(imageName: "collection4"),
-        ImageForNewWorkout(imageName: "testWorkout"),
-    ]
+    let images: [String] = ["colection1", "colection2", "collection3", "collection4", "testWorkout"]
     
     private let collectionLayout = UICollectionViewFlowLayout()
     
     private let idImagesCell = "idImagesCell"
     
-    static var extractedImage: ImageForNewWorkout?
+    public var extractedImage: String?
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: collectionLayout)
@@ -50,6 +49,8 @@ class ImagesCollectionView: UICollectionView {
         self.delegate = self
         self.dataSource = self
     }
+    
+    
 }
 
 //MARK: - UICollectionViewDataSource
@@ -63,7 +64,7 @@ extension ImagesCollectionView: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: idImagesCell, for: indexPath) as? ImageCollectionViewCell else { return UICollectionViewCell() }
         
         let item = images[indexPath.item]
-        cell.workoutImageView.image = UIImage(named: item.imageName)?.withRenderingMode(.alwaysTemplate)
+        cell.workoutImageView.image = UIImage(named: item)?.withTintColor(.black, renderingMode: .alwaysTemplate)
         
         return cell
     }
@@ -73,20 +74,14 @@ extension ImagesCollectionView: UICollectionViewDataSource {
 
 extension ImagesCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch indexPath.item {
-        case 0:
-            ImagesCollectionView.extractedImage = images[0]
-        case 1:
-            ImagesCollectionView.extractedImage = images[1]
-        case 2:
-            ImagesCollectionView.extractedImage = images[2]
-        case 3:
-            ImagesCollectionView.extractedImage = images[3]
-        case 4:
-            ImagesCollectionView.extractedImage = images[4]
-        default:
-            ImagesCollectionView.extractedImage = nil
-        }
+//        switch indexPath.item {
+//        case 0: imagineDelegate?.selectItem(imagine: images[0])
+//        case 1: imagineDelegate?.selectItem(imagine: images[1])
+//        case 2: imagineDelegate?.selectItem(imagine: images[2])
+//        case 3: imagineDelegate?.selectItem(imagine: images[3])
+//        default: imagineDelegate?.selectItem(imagine: images[4])
+//        }
+        imagineDelegate?.selectItem(imagine: images[indexPath.item])
     }
 }
 

@@ -29,6 +29,10 @@ class BackGroundCollectionView: UIView {
         self.addSubview(imagesCollectionView)
     }
     
+    public func setDelegate(_ delegate: ImagineProtocol?) {
+        imagesCollectionView.imagineDelegate = delegate
+    }
+    
     private func setConstraints() {
         NSLayoutConstraint.activate([
             imagesCollectionView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
@@ -38,3 +42,4 @@ class BackGroundCollectionView: UIView {
         ])
     }
 }
+

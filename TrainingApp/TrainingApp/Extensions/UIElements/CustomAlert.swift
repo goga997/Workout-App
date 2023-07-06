@@ -77,12 +77,12 @@ class CustomAlert {
         setsTextField.keyboardType = .numberPad
         alertView.addSubview(setsTextField)
         
-        let repsLabel = UILabel(text: "Reps")
-        repsLabel.translatesAutoresizingMaskIntoConstraints = true
-        repsLabel.frame = CGRect(x: 30, y: setsTextField.frame.maxY, width: alertView.frame.width - 60, height: 20)
-        alertView.addSubview(repsLabel)
+        let repsOrTimerLabel = UILabel(text: repsOrTimer)
+        repsOrTimerLabel.translatesAutoresizingMaskIntoConstraints = true
+        repsOrTimerLabel.frame = CGRect(x: 30, y: setsTextField.frame.maxY, width: alertView.frame.width - 60, height: 20)
+        alertView.addSubview(repsOrTimerLabel)
         
-        repsTextField.frame = CGRect(x: 20, y: repsLabel.frame.maxY, width: alertView.frame.width - 40, height: 30)
+        repsTextField.frame = CGRect(x: 20, y: repsOrTimerLabel.frame.maxY, width: alertView.frame.width - 40, height: 30)
         repsTextField.translatesAutoresizingMaskIntoConstraints = true
         repsTextField.keyboardType = .numberPad
         alertView.addSubview(repsTextField)

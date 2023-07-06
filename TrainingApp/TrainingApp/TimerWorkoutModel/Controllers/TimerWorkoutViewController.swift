@@ -94,11 +94,12 @@ class TimerWorkoutViewController: UIViewController {
 
 //Timer Functions
     @objc private func startTimer() {
-        infoView.buttonsIsEnable(false)
         
         if numberOfSet == workoutModel.workoutSets {
             presentSimpleAlert(title: "Workout Done", message: "Finish your workout\nYou can not go further")
         } else {
+            infoView.buttonsIsEnable(false)
+            timerLabel.isUserInteractionEnabled = false
             basicAnimation()
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
         }
@@ -106,7 +107,6 @@ class TimerWorkoutViewController: UIViewController {
     
     @objc private func timerAction() {
         durationTimer -= 1
-        timerLabel.isUserInteractionEnabled = false
         
         if durationTimer == 0 {
             timer.invalidate()

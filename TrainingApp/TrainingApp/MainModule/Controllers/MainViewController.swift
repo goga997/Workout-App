@@ -143,13 +143,11 @@ extension MainViewController: MainTableViewProtocol {
 extension MainViewController: WorkoutTableViewCellProtocol {
     func startButtonTapped(model: WorkoutModel) {
         if model.workoutTimer == 0 {
-            print("ecran reps")
             let reps = RepsWorkoutViewController()
             reps.modalPresentationStyle = .fullScreen
             reps.setWorkoutModel(model)
             present(reps, animated: true)
         } else {
-            print("ecran timer")
             let timer = TimerWorkoutViewController()
             timer.modalPresentationStyle = .fullScreen
             timer.setWorkoutModel(model)

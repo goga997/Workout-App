@@ -29,7 +29,7 @@ class RepsWorkoutViewController: UIViewController {
     
     private let detailsLabel = UILabel(text: "Detailes")
     
-    private let infoView = WorkoutParametersView()
+    private let infoView = RepsWorkoutParametersView()
     
     private lazy var finishButton = GreenButton(text: "FINISH")
     
@@ -84,7 +84,7 @@ class RepsWorkoutViewController: UIViewController {
     }
 }
 
-// PROTOCOL NextSet
+//MARK: - PROTOCOL NextSet
 extension RepsWorkoutViewController: NextSetProtocol {
     func nextSetTapped() {
         if numberOfSet < workoutModel.workoutSets {
@@ -107,7 +107,7 @@ extension RepsWorkoutViewController: NextSetProtocol {
     }
 }
 
-//LAYOUTS
+//MARK: - LAYOUTS
 extension RepsWorkoutViewController {
     private func setConstraints() {
         NSLayoutConstraint.activate([

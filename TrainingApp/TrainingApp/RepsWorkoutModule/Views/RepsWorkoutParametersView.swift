@@ -12,7 +12,7 @@ protocol NextSetProtocol: AnyObject {
     func editingTapped()
 }
 
-class WorkoutParametersView: UIView {
+class RepsWorkoutParametersView: UIView {
     
     weak var delegate: NextSetProtocol?
     
@@ -111,7 +111,7 @@ class WorkoutParametersView: UIView {
     }
 }
 
-extension WorkoutParametersView {
+extension RepsWorkoutParametersView {
     private func setConstraints() {
         NSLayoutConstraint.activate([
             nameWorkoutLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),

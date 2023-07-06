@@ -7,7 +7,15 @@
 
 import UIKit
 
+protocol NextSetTimerProtocol: AnyObject {
+    func nextSetTapped()
+    func editingTimerButtonTapped()
+}
+
 class TimerWorkoutParametersView: UIView {
+    
+    weak var timerDelegate: NextSetTimerProtocol?
+    
     private let nameWorkoutLabel = UILabel(text: "Biceps", font: .robotoBold24(), textColor: .specialGray)
     
     private let setsLabel = UILabel(text: "Sets", font: .robotoMedium18(), textColor: .specialGray)
@@ -16,7 +24,7 @@ class TimerWorkoutParametersView: UIView {
     
     private let contextLabel = UILabel(text: "Time of Set", font: .robotoMedium18(), textColor: .specialGray)
     
-    private let numberReps = UILabel(text: "1 min 20 sec", font: .robotoMedium24(), textColor: .specialGray)
+    private let timerValue = UILabel(text: "1 min 20 sec", font: .robotoMedium24(), textColor: .specialGray)
     
     private let lineDownView: UIView = {
        let view = UIView()
@@ -24,6 +32,7 @@ class TimerWorkoutParametersView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
     private let lineDownViewSecond: UIView = {
        let view = UIView()
         view.backgroundColor = .specialLine
@@ -74,25 +83,36 @@ class TimerWorkoutParametersView: UIView {
         layer.cornerRadius = 10
         translatesAutoresizingMaskIntoConstraints = false
         numberSets.textAlignment = .right
-        numberReps.textAlignment = .right
+        timerValue.textAlignment = .right
     
         self.addSubview(nameWorkoutLabel)
         self.addSubview(setsLabel)
         self.addSubview(numberSets)
         self.addSubview(lineDownView)
         self.addSubview(contextLabel)
-        self.addSubview(numberReps)
+        self.addSubview(timerValue)
         self.addSubview(lineDownViewSecond)
         self.addSubview(editingButton)
         self.addSubview(nextSeTButton)
     }
     
     @objc private func nextSetButtonTapped() {
-        print("tap works")
+        timerDelegate?.nextSetTapped()
     }
     
     @objc private func editingButtonTapped() {
-        print("tap eiditing")
+        timerDelegate?.editingTimerButtonTapped()
+    }
+    
+    public func refreshLabelsValue(model: WorkoutModel, numberOfSet: Int) {
+        nameWorkoutLabel.text = model.workoutName
+        numberSets.text = "\(numberOfSet)/\(model.workoutSets)"
+        timerValue.text = "\(model.workoutTimer.getTimeFromSeconds())"
+    }
+    
+    public func buttonsIsEnable(_ value: Bool) {
+        editingButton.isEnabled = value
+        nextSeTButton.isEnabled = value
     }
 }
 
@@ -119,9 +139,9 @@ extension TimerWorkoutParametersView {
             contextLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
             contextLabel.widthAnchor.constraint(equalToConstant: 100),
             
-            numberReps.topAnchor.constraint(equalTo: lineDownView.bottomAnchor, constant: 25),
-            numberReps.leadingAnchor.constraint(equalTo: contextLabel.trailingAnchor),
-            numberReps.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
+            timerValue.topAnchor.constraint(equalTo: lineDownView.bottomAnchor, constant: 25),
+            timerValue.leadingAnchor.constraint(equalTo: contextLabel.trailingAnchor),
+            timerValue.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
             
             lineDownViewSecond.topAnchor.constraint(equalTo: contextLabel.bottomAnchor, constant: 4),
             lineDownViewSecond.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),

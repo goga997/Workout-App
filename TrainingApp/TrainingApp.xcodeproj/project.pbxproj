@@ -23,7 +23,7 @@
 		DF515D632A3DC12F0095D054 /* DateRepeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF515D622A3DC12F0095D054 /* DateRepeatView.swift */; };
 		DF515D652A3DD0280095D054 /* RepsOrTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF515D642A3DD0280095D054 /* RepsOrTimerView.swift */; };
 		DF73C9792A5021F700F9D03D /* RepsWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF73C9782A5021F700F9D03D /* RepsWorkoutViewController.swift */; };
-		DF73C97B2A5022FE00F9D03D /* WorkoutParametersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF73C97A2A5022FE00F9D03D /* WorkoutParametersView.swift */; };
+		DF73C97B2A5022FE00F9D03D /* RepsWorkoutParametersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF73C97A2A5022FE00F9D03D /* RepsWorkoutParametersView.swift */; };
 		DF73C9802A5037D100F9D03D /* TimerWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF73C97F2A5037D100F9D03D /* TimerWorkoutViewController.swift */; };
 		DF73C9822A50388F00F9D03D /* TimerWorkoutParametersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF73C9812A50388F00F9D03D /* TimerWorkoutParametersView.swift */; };
 		DF73C9842A50627400F9D03D /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF73C9832A50627400F9D03D /* CustomAlert.swift */; };
@@ -73,7 +73,7 @@
 		DF515D622A3DC12F0095D054 /* DateRepeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRepeatView.swift; sourceTree = "<group>"; };
 		DF515D642A3DD0280095D054 /* RepsOrTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsOrTimerView.swift; sourceTree = "<group>"; };
 		DF73C9782A5021F700F9D03D /* RepsWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsWorkoutViewController.swift; sourceTree = "<group>"; };
-		DF73C97A2A5022FE00F9D03D /* WorkoutParametersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutParametersView.swift; sourceTree = "<group>"; };
+		DF73C97A2A5022FE00F9D03D /* RepsWorkoutParametersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsWorkoutParametersView.swift; sourceTree = "<group>"; };
 		DF73C97F2A5037D100F9D03D /* TimerWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWorkoutViewController.swift; sourceTree = "<group>"; };
 		DF73C9812A50388F00F9D03D /* TimerWorkoutParametersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWorkoutParametersView.swift; sourceTree = "<group>"; };
 		DF73C9832A50627400F9D03D /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
@@ -158,7 +158,7 @@
 		DF73C9762A5021C900F9D03D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DF73C97A2A5022FE00F9D03D /* WorkoutParametersView.swift */,
+				DF73C97A2A5022FE00F9D03D /* RepsWorkoutParametersView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -537,7 +537,7 @@
 				DF8A19182A3114EA009FD3DF /* AppDelegate.swift in Sources */,
 				DF302F6C2A3A05BB00E3CDE7 /* UILabelExtension.swift in Sources */,
 				DFD7412E2A3EEF4C00C27CBF /* SliderView.swift in Sources */,
-				DF73C97B2A5022FE00F9D03D /* WorkoutParametersView.swift in Sources */,
+				DF73C97B2A5022FE00F9D03D /* RepsWorkoutParametersView.swift in Sources */,
 				DF4037622A3B5AB100208B82 /* NameView.swift in Sources */,
 				DF4CB91E2A4A3BBA0060523A /* DifferenceWorkout.swift in Sources */,
 				DF262D0D2A3F36D100206023 /* WorkoutModel.swift in Sources */,

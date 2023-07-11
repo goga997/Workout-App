@@ -18,7 +18,7 @@ class RealmManager {
     func saveWorkoutModel(_ model: WorkoutModel) {
         try! realm.write {
             realm.add(model)
-//            print("Realm is located at:", realm.configuration.fileURL!)
+            //            print("Realm is located at:", realm.configuration.fileURL!)
         }
     }
     
@@ -52,5 +52,29 @@ class RealmManager {
         }
     }
     
+    //MARK: - work with userData
+    
+    func getUsersModel() -> Results<UserModel> {
+        realm.objects(UserModel.self)
+    }
+    
+    func saveUserModel(_ model: UserModel) {
+        try! realm.write {
+            realm.add(model)
+        }
+    }
+    
+    func updateUserModel (model: UserModel) {
+        let users = realm.objects(UserModel.self)
+        try! realm.write {
+            users[0].userFirstName = model.userFirstName
+            users[0].userLastName = model.userLastName
+            users[0].userHeight = model.userHeight
+            users[0].userWeight = model.userWeight
+            users[0].userTarget = model.userTarget
+            users[0].userImage = model.userImage 
+            
+        }
+    }
     
 }

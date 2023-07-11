@@ -7,11 +7,19 @@
 
 import UIKit
 
+protocol ProgressViewPRotocol: AnyObject {
+    func setProgressView()
+}
+
 class ProfileStatisticCollectionView: UICollectionView {
+    
+    weak var delegateProgress: ProgressViewPRotocol?
     
     private let idProfileCell = "idProfileCell"
     
     private let collectionLayout  = UICollectionViewFlowLayout()
+    
+    private var resultWorkout = [ResultWorkout]()
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: collectionLayout)
@@ -29,11 +37,10 @@ class ProfileStatisticCollectionView: UICollectionView {
     private func configure() {
         backgroundColor = .none
         translatesAutoresizingMaskIntoConstraints = false
-        
     }
     
     private func setUpLayouts() {
-        collectionLayout.minimumInteritemSpacing = 13
+//        collectionLayout.minimumInteritemSpacing = 13
         collectionLayout.scrollDirection = .horizontal
     }
     
@@ -41,19 +48,28 @@ class ProfileStatisticCollectionView: UICollectionView {
         dataSource = self
         delegate = self
     }
+    
+    public func setResultsWorkoutArray(array: [ResultWorkout]) {
+        resultWorkout = array
+    }
+    
+    
 }
 
 //MARK: - UICollectionViewDataSource
 
 extension ProfileStatisticCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        8
+        resultWorkout.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: idProfileCell, for: indexPath) as? InfoProfileCollViewCell else { return UICollectionViewCell() }
         
+        cell.backgroundColor = (indexPath.row % 4 == 0 || indexPath.row % 4 == 3) ? .specialGreen : .specialDarkYellow
         
+        let model = resultWorkout[indexPath.row]
+        cell.configure(model: model)
         
         return cell
     }
@@ -63,14 +79,7 @@ extension ProfileStatisticCollectionView: UICollectionViewDataSource {
 
 extension ProfileStatisticCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch indexPath.item {
-        case 0 : print("0")
-        case 1: print("1")
-        case 2: print("2")
-        case 3: print("3")
-        case 4: print("4")
-        default: print("def")
-        }
+        delegateProgress?.setProgressView()
     }
 }
 
@@ -78,8 +87,12 @@ extension ProfileStatisticCollectionView: UICollectionViewDelegate {
 
 extension ProfileStatisticCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width / 2.1,
-                      height: collectionView.frame.width / 2.8)
+        return CGSize(width: collectionView.frame.width / 2.07,
+                      height: 120)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        5
     }
 }
 

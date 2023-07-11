@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		DF0A5BDF2A40584D00D8C1DE /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0A5BDE2A40584D00D8C1DE /* UIViewControllerExtension.swift */; };
 		DF0AB13A2A3E34DB00FD027E /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0AB1392A3E34DB00FD027E /* ImageCollectionViewCell.swift */; };
+		DF11E93F2A5D7DC600979FA9 /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF11E93E2A5D7DC600979FA9 /* ProfileSettingsViewController.swift */; };
+		DF11E9412A5DAE2B00979FA9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF11E9402A5DAE2A00979FA9 /* UserModel.swift */; };
+		DF11E9442A5DBB8900979FA9 /* ResultWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF11E9432A5DBB8800979FA9 /* ResultWorkout.swift */; };
 		DF262D0D2A3F36D100206023 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF262D0C2A3F36D100206023 /* WorkoutModel.swift */; };
 		DF262D0F2A3F429500206023 /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF262D0E2A3F429500206023 /* Date + Extension.swift */; };
 		DF262D122A3F4A9600206023 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF262D112A3F4A9600206023 /* RealmManager.swift */; };
@@ -62,6 +65,9 @@
 /* Begin PBXFileReference section */
 		DF0A5BDE2A40584D00D8C1DE /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		DF0AB1392A3E34DB00FD027E /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		DF11E93E2A5D7DC600979FA9 /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
+		DF11E9402A5DAE2A00979FA9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		DF11E9432A5DBB8800979FA9 /* ResultWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWorkout.swift; sourceTree = "<group>"; };
 		DF262D0C2A3F36D100206023 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 		DF262D0E2A3F429500206023 /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
 		DF262D112A3F4A9600206023 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -125,6 +131,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF11E93A2A5D7D7B00979FA9 /* ProfileSettingsModule */ = {
+			isa = PBXGroup;
+			children = (
+				DF11E93B2A5D7DA400979FA9 /* Controller */,
+			);
+			path = ProfileSettingsModule;
+			sourceTree = "<group>";
+		};
+		DF11E93B2A5D7DA400979FA9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DF11E93E2A5D7DC600979FA9 /* ProfileSettingsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DF11E9422A5DBB7800979FA9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DF11E9432A5DBB8800979FA9 /* ResultWorkout.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		DF262D102A3F4A7800206023 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,7 +166,7 @@
 		DF42ED482A56E60800653096 /* ProfileModule */ = {
 			isa = PBXGroup;
 			children = (
-				DF42ED4A2A56E65A00653096 /* Models */,
+				DF11E9422A5DBB7800979FA9 /* Model */,
 				DF42ED4B2A56E66000653096 /* Views */,
 				DF42ED492A56E62B00653096 /* Controllers */,
 			);
@@ -149,13 +179,6 @@
 				DF42ED4C2A56E68300653096 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		DF42ED4A2A56E65A00653096 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		DF42ED4B2A56E66000653096 /* Views */ = {
@@ -263,6 +286,7 @@
 				DF73C97C2A5036C100F9D03D /* TimerWorkoutModel */,
 				DFD1906C2A3B05A800CCA2F1 /* StatisticModeule */,
 				DF42ED482A56E60800653096 /* ProfileModule */,
+				DF11E93A2A5D7D7B00979FA9 /* ProfileSettingsModule */,
 				DF262D102A3F4A7800206023 /* Services */,
 				DF8A192F2A3129AC009FD3DF /* SupportingFiles */,
 				DF8A19342A32118C009FD3DF /* Extensions */,
@@ -455,6 +479,7 @@
 			isa = PBXGroup;
 			children = (
 				DF262D0C2A3F36D100206023 /* WorkoutModel.swift */,
+				DF11E9402A5DAE2A00979FA9 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -556,6 +581,7 @@
 				DFD1907A2A3B49B800CCA2F1 /* MainTabBarController.swift in Sources */,
 				DF8A19312A31C3B0009FD3DF /* CalendarViewGreen.swift in Sources */,
 				DF262D0F2A3F429500206023 /* Date + Extension.swift in Sources */,
+				DF11E9412A5DAE2B00979FA9 /* UserModel.swift in Sources */,
 				DFD190702A3B061600CCA2F1 /* StatisticViewController.swift in Sources */,
 				DFD7412B2A3E556C00C27CBF /* Int + Extension.swift in Sources */,
 				DFD1907F2A3B4F4A00CCA2F1 /* NewWorkoutViewController.swift in Sources */,
@@ -585,8 +611,10 @@
 				DF4CB91E2A4A3BBA0060523A /* DifferenceWorkout.swift in Sources */,
 				DF262D0D2A3F36D100206023 /* WorkoutModel.swift in Sources */,
 				DFD190742A3B098A00CCA2F1 /* StatisticTableView.swift in Sources */,
+				DF11E93F2A5D7DC600979FA9 /* ProfileSettingsViewController.swift in Sources */,
 				DF42ED4F2A56FD8600653096 /* ProfileStatisticCollectionView.swift in Sources */,
 				DF3F2C832A3DF60D0010CD99 /* GreenButton.swift in Sources */,
+				DF11E9442A5DBB8900979FA9 /* ResultWorkout.swift in Sources */,
 				DF73C9802A5037D100F9D03D /* TimerWorkoutViewController.swift in Sources */,
 				DF73C9822A50388F00F9D03D /* TimerWorkoutParametersView.swift in Sources */,
 				DF0AB13A2A3E34DB00FD027E /* ImageCollectionViewCell.swift in Sources */,

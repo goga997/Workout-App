@@ -22,7 +22,7 @@ class InfoProfileCollViewCell: UICollectionViewCell {
     private let workoutImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "colection2")?.withRenderingMode(.alwaysTemplate)
+//        imageView.image = UIImage(named: "colection2")?.withRenderingMode(.alwaysTemplate)
         imageView.tintColor = .white
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -49,6 +49,15 @@ class InfoProfileCollViewCell: UICollectionViewCell {
         addSubview(nameLabel)
         addSubview(workoutImageView)
         addSubview(numberLabel)
+    }
+    
+    public func configure(model: ResultWorkout) {
+        nameLabel.text = model.name
+        numberLabel.text = "\(model.result)"
+        
+        guard let data = model.imageData else { return }
+        let image = UIImage(data: data)
+        workoutImageView.image = image?.withRenderingMode(.alwaysTemplate)
     }
     
 }

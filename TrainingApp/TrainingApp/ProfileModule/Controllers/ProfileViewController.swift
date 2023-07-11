@@ -9,6 +9,8 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    private var resultWorkout = [ResultWorkout]()
+    
     private let profileLabelTop: UILabel = {
         let label = UILabel()
         label.font = .robotoBold24()
@@ -23,6 +25,8 @@ class ProfileViewController: UIViewController {
         imageView.backgroundColor = #colorLiteral(red: 0.8044065833, green: 0.8044064641, blue: 0.8044064641, alpha: 1)
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 5
+        imageView.clipsToBounds = true
+        imageView.contentMode = .center
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -69,12 +73,25 @@ class ProfileViewController: UIViewController {
     private let firstProgresLabel = UILabel(text: "2", font: .robotoBold28(), textColor: .specialGray)
     private let secondProgresLabel = UILabel(text: "20", font: .robotoBold28(), textColor: .specialGray)
     
-    private let progressView: UIView = {
+    private let targetView: UIView = {
        let view = UIView()
         view.layer.cornerRadius = 15
         view.backgroundColor = .specialBrown
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    
+    private let progressView: UIProgressView = {
+        let progressView = UIProgressView(progressViewStyle: .default)
+        progressView.trackTintColor = .specialBrown
+        progressView.progressTintColor = .specialGreen
+        progressView.layer.cornerRadius = 15
+        progressView.clipsToBounds = true
+        progressView.setProgress(0, animated: true)
+        progressView.layer.sublayers?[1].cornerRadius = 15
+        progressView.subviews[1].clipsToBounds = true
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        return progressView
     }()
 
 //MARK: - LIFECYCLE
@@ -87,6 +104,14 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.height / 2
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        resultWorkout = [ResultWorkout]()
+        getWorkoutResults()
+        profileStatisticCollectionView.reloadData()
     }
     
     //MARK: SetUpView
@@ -102,19 +127,64 @@ class ProfileViewController: UIViewController {
         labelsStackView = UIStackView(arrangedSubviews: [heightLabel, weightLabel], axis: .horizontal, spacing: 10)
         view.addSubview(labelsStackView)
         
+        profileStatisticCollectionView.delegateProgress = self
         view.addSubview(profileStatisticCollectionView)
         view.addSubview(targetLabel)
         
         valueProgressStackView = UIStackView(arrangedSubviews: [firstProgresLabel, secondProgresLabel], axis: .horizontal, distribution: .equalSpacing)
         secondProgresLabel.textAlignment = .right
         view.addSubview(valueProgressStackView)
-        view.addSubview(progressView)
+        view.addSubview(targetView)
+        targetView.addSubview(progressView)
     }
     
-    //MARK: - Functions @objc
+    //MARK: - Functions & @objc
     @objc private func editingButtonTapped() {
-        
+        let profileSettingsVC = ProfileSettingsViewController()
+        profileSettingsVC.modalPresentationStyle = .fullScreen
+        present(profileSettingsVC, animated: true)
     }
+    
+    private func getWorkoutName() -> [String] {
+        var nameArray = [String]()
+        let allWorkouts = RealmManager.shared.getObjectsWorkoutModel()
+        
+        for workoutModel in allWorkouts {
+            if !nameArray.contains(workoutModel.workoutName) {
+                nameArray.append(workoutModel.workoutName)
+            }
+        }
+        return nameArray
+    }
+    
+    private func getWorkoutResults() {
+        let nameArray = getWorkoutName()
+        let workoutArray = RealmManager.shared.getObjectsWorkoutModel()
+        
+        for name in nameArray {
+             let predicate = NSPredicate(format: "workoutName = '\(name)'")
+            let filtredArray = workoutArray.filter(predicate).sorted(byKeyPath: "workoutName")
+            var result = 0
+            var image: Data?
+            filtredArray.forEach { model in
+                if model.workoutStatus {
+                    result += model.workoutReps * model.workoutSets
+                    image = model.workoutImage
+                }
+            }
+            
+            let resultsModel = ResultWorkout(name: name , result: result, imageData: image)
+            self.resultWorkout.append(resultsModel)
+        }
+        profileStatisticCollectionView.setResultsWorkoutArray(array: resultWorkout )
+    }
+}
+
+extension ProfileViewController: ProgressViewPRotocol {
+    func setProgressView() {
+        progressView.setProgress(0.6, animated: true)
+    }
+    
     
 }
 
@@ -149,7 +219,7 @@ extension ProfileViewController {
             profileStatisticCollectionView.topAnchor.constraint(equalTo: labelsStackView.bottomAnchor, constant: 25),
             profileStatisticCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             profileStatisticCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            profileStatisticCollectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.324),
+            profileStatisticCollectionView.heightAnchor.constraint(equalToConstant: 250),
             
             targetLabel.topAnchor.constraint(equalTo: profileStatisticCollectionView.bottomAnchor, constant: 25),
             targetLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
@@ -159,10 +229,15 @@ extension ProfileViewController {
             valueProgressStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             valueProgressStackView.heightAnchor.constraint(equalToConstant: 30),
             
+            targetView.topAnchor.constraint(equalTo: valueProgressStackView.bottomAnchor, constant: 2),
+            targetView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            targetView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            targetView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.07),
+            
             progressView.topAnchor.constraint(equalTo: valueProgressStackView.bottomAnchor, constant: 2),
             progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            progressView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.07)
+            progressView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.07),
         ])
     }
 }

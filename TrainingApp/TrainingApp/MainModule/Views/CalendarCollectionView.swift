@@ -43,9 +43,7 @@ class CalendarCollectionView: UICollectionView {
     private func setDelegates() {
         dataSource = self
         delegate = self
-        
     }
-    
 }
 
 //MARK: - UICollectionViewDataSource

@@ -19,6 +19,9 @@
 		DF3F2C872A3DF9CF0010CD99 /* BrownTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3F2C862A3DF9CF0010CD99 /* BrownTextField.swift */; };
 		DF3F2C892A3DFFA00010CD99 /* GreenSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3F2C882A3DFFA00010CD99 /* GreenSlider.swift */; };
 		DF4037622A3B5AB100208B82 /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4037612A3B5AB100208B82 /* NameView.swift */; };
+		DF42ED4D2A56E68300653096 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF42ED4C2A56E68300653096 /* ProfileViewController.swift */; };
+		DF42ED4F2A56FD8600653096 /* ProfileStatisticCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF42ED4E2A56FD8600653096 /* ProfileStatisticCollectionView.swift */; };
+		DF42ED512A57001900653096 /* InfoProfileCollViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF42ED502A57001900653096 /* InfoProfileCollViewCell.swift */; };
 		DF4CB91E2A4A3BBA0060523A /* DifferenceWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB91D2A4A3BBA0060523A /* DifferenceWorkout.swift */; };
 		DF515D632A3DC12F0095D054 /* DateRepeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF515D622A3DC12F0095D054 /* DateRepeatView.swift */; };
 		DF515D652A3DD0280095D054 /* RepsOrTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF515D642A3DD0280095D054 /* RepsOrTimerView.swift */; };
@@ -69,6 +72,9 @@
 		DF3F2C862A3DF9CF0010CD99 /* BrownTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrownTextField.swift; sourceTree = "<group>"; };
 		DF3F2C882A3DFFA00010CD99 /* GreenSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenSlider.swift; sourceTree = "<group>"; };
 		DF4037612A3B5AB100208B82 /* NameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
+		DF42ED4C2A56E68300653096 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		DF42ED4E2A56FD8600653096 /* ProfileStatisticCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatisticCollectionView.swift; sourceTree = "<group>"; };
+		DF42ED502A57001900653096 /* InfoProfileCollViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoProfileCollViewCell.swift; sourceTree = "<group>"; };
 		DF4CB91D2A4A3BBA0060523A /* DifferenceWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferenceWorkout.swift; sourceTree = "<group>"; };
 		DF515D622A3DC12F0095D054 /* DateRepeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRepeatView.swift; sourceTree = "<group>"; };
 		DF515D642A3DD0280095D054 /* RepsOrTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsOrTimerView.swift; sourceTree = "<group>"; };
@@ -125,6 +131,40 @@
 				DF262D112A3F4A9600206023 /* RealmManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		DF42ED482A56E60800653096 /* ProfileModule */ = {
+			isa = PBXGroup;
+			children = (
+				DF42ED4A2A56E65A00653096 /* Models */,
+				DF42ED4B2A56E66000653096 /* Views */,
+				DF42ED492A56E62B00653096 /* Controllers */,
+			);
+			path = ProfileModule;
+			sourceTree = "<group>";
+		};
+		DF42ED492A56E62B00653096 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DF42ED4C2A56E68300653096 /* ProfileViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DF42ED4A2A56E65A00653096 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DF42ED4B2A56E66000653096 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DF42ED4E2A56FD8600653096 /* ProfileStatisticCollectionView.swift */,
+				DF42ED502A57001900653096 /* InfoProfileCollViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		DF4CB91C2A4A3B940060523A /* Model */ = {
@@ -222,6 +262,7 @@
 				DF73C9742A50219E00F9D03D /* RepsWorkoutModule */,
 				DF73C97C2A5036C100F9D03D /* TimerWorkoutModel */,
 				DFD1906C2A3B05A800CCA2F1 /* StatisticModeule */,
+				DF42ED482A56E60800653096 /* ProfileModule */,
 				DF262D102A3F4A7800206023 /* Services */,
 				DF8A192F2A3129AC009FD3DF /* SupportingFiles */,
 				DF8A19342A32118C009FD3DF /* Extensions */,
@@ -525,6 +566,7 @@
 				DFD1906B2A3A54FC00CCA2F1 /* WorkoutTableViewCell.swift in Sources */,
 				DF8A19422A322BF6009FD3DF /* CalendarCollectionView.swift in Sources */,
 				DF302F702A3A0AB100E3CDE7 /* MainTableView.swift in Sources */,
+				DF42ED4D2A56E68300653096 /* ProfileViewController.swift in Sources */,
 				DF8A193E2A32258A009FD3DF /* UIFontExtension.swift in Sources */,
 				DF8A191C2A3114EA009FD3DF /* MainViewController.swift in Sources */,
 				DF0A5BDF2A40584D00D8C1DE /* UIViewControllerExtension.swift in Sources */,
@@ -532,6 +574,7 @@
 				DF3F2C892A3DFFA00010CD99 /* GreenSlider.swift in Sources */,
 				DF302F722A3A0FFD00E3CDE7 /* StackViewExtension.swift in Sources */,
 				DFD190772A3B0B3900CCA2F1 /* StatisticCell.swift in Sources */,
+				DF42ED512A57001900653096 /* InfoProfileCollViewCell.swift in Sources */,
 				DFF7116D2A3E329F00C6D5A7 /* ImagesCollectionView.swift in Sources */,
 				DF73C9842A50627400F9D03D /* CustomAlert.swift in Sources */,
 				DF8A19182A3114EA009FD3DF /* AppDelegate.swift in Sources */,
@@ -542,6 +585,7 @@
 				DF4CB91E2A4A3BBA0060523A /* DifferenceWorkout.swift in Sources */,
 				DF262D0D2A3F36D100206023 /* WorkoutModel.swift in Sources */,
 				DFD190742A3B098A00CCA2F1 /* StatisticTableView.swift in Sources */,
+				DF42ED4F2A56FD8600653096 /* ProfileStatisticCollectionView.swift in Sources */,
 				DF3F2C832A3DF60D0010CD99 /* GreenButton.swift in Sources */,
 				DF73C9802A5037D100F9D03D /* TimerWorkoutViewController.swift in Sources */,
 				DF73C9822A50388F00F9D03D /* TimerWorkoutParametersView.swift in Sources */,

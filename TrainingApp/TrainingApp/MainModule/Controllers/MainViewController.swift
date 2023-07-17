@@ -14,6 +14,8 @@ class MainViewController: UIViewController {
         imageView.backgroundColor = #colorLiteral(red: 0.8044065833, green: 0.8044064641, blue: 0.8044064641, alpha: 1)
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 5
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -81,7 +83,8 @@ class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         
         selectItem(date: Date())
-        mainTableView.reloadData() 
+        mainTableView.reloadData()
+        setUpUserparametters()
     }
     
     //MARK: Functionality
@@ -116,6 +119,18 @@ class MainViewController: UIViewController {
         let resultArray = RealmManager.shared.getObjectsWorkoutModel()
         let filteredArray = resultArray.filter(compound).sorted(byKeyPath: "workoutName")
         workoutArray = filteredArray.map { $0 }
+    }
+    
+    private func setUpUserparametters() {
+        let userArray = RealmManager.shared.getUsersModel()
+        if userArray.count != 0 {
+            
+            userNameLabel.text = userArray[0].userFirstName + " " + userArray[0].userLastName
+            guard let data = userArray[0].userImage,
+                  let image = UIImage(data: data) else { return }
+            
+            userPhotoImageView.image = image
+        }
     }
 }
 

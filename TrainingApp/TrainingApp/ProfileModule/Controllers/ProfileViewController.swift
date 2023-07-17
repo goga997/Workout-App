@@ -70,8 +70,8 @@ class ProfileViewController: UIViewController {
     private let profileStatisticCollectionView = ProfileStatisticCollectionView()
     private let targetLabel = UILabel(text: "TARGET: 20 workouts", font: .robotoBold20(), textColor: .specialGray)
     private var valueProgressStackView = UIStackView()
-    private let firstProgresLabel = UILabel(text: "2", font: .robotoBold28(), textColor: .specialGray)
-    private let secondProgresLabel = UILabel(text: "20", font: .robotoBold28(), textColor: .specialGray)
+    private let firstProgresLabel = UILabel(text: "0", font: .robotoBold28(), textColor: .specialGray)
+    private let secondProgresLabel = UILabel(text: " ", font: .robotoBold28(), textColor: .specialGray)
     
     private let targetView: UIView = {
        let view = UIView()
@@ -112,6 +112,9 @@ class ProfileViewController: UIViewController {
         resultWorkout = [ResultWorkout]()
         getWorkoutResults()
         profileStatisticCollectionView.reloadData()
+        userPhotoImageView.contentMode = .scaleAspectFill
+        setUpUserparametters()
+        
     }
     
     //MARK: SetUpView
@@ -178,13 +181,31 @@ class ProfileViewController: UIViewController {
         }
         profileStatisticCollectionView.setResultsWorkoutArray(array: resultWorkout )
     }
+    
+    private func setUpUserparametters() {
+        let userArray = RealmManager.shared.getUsersModel()
+        if userArray.count != 0 {
+            nameProfileLabel.text = userArray[0].userFirstName + " " + userArray[0].userLastName
+            weightLabel.text = "Weight: \(userArray[0].userWeight)"
+            heightLabel.text = "Height: \(userArray[0].userHeight )"
+            targetLabel.text = "TARGET: \(userArray[0].userTarget)"
+            secondProgresLabel.text = "\(userArray[0].userTarget )"
+            
+            guard let data = userArray[0].userImage,
+                  let image = UIImage(data: data) else { return }
+            
+            userPhotoImageView.image = image
+        }
+    }
 }
 
 extension ProfileViewController: ProgressViewPRotocol {
-    func setProgressView() {
-        progressView.setProgress(0.6, animated: true)
+    func setProgressView(result: Int) {
+        
+        let percentResult = Float(result) / Float(secondProgresLabel.text!)!
+        progressView.setProgress(percentResult, animated: true)
+        firstProgresLabel.text = "\(result)"
     }
-    
     
 }
 

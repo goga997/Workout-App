@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 class ProfileSettingsViewController: UIViewController {
     
@@ -24,7 +25,6 @@ class ProfileSettingsViewController: UIViewController {
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 5
         imageView.clipsToBounds = true
-        imageView.contentMode = .center
         imageView.image = UIImage(named: "addPhoto")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -96,6 +96,12 @@ class ProfileSettingsViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.height / 2
+        
+        if userPhotoImageView.image == UIImage(named: "addPhoto") {
+            userPhotoImageView.contentMode = .center
+        } else {
+            userPhotoImageView.contentMode = .scaleAspectFill
+        }
     }
     
     deinit {
@@ -130,19 +136,39 @@ class ProfileSettingsViewController: UIViewController {
     }
     
     @objc private func imageViewTapped() {
-        
+        alertPhotoOrCamera { [weak self] (source) in
+            guard let self = self else { return }
+            
+            if #available(iOS 14, *) {
+                self.pressentPHPhoto()
+            } else {
+                self.chooseImageForProffile(source: source)
+            }
+            
+        }
     }
     
     @objc private func saveButtonTapped() {
         setUserModel()
         
+        guard let text = targetTextField.text else { return }
+        let countTargetValue = text.filter({$0.isNumber}).count
+        
         let usersArray = RealmManager.shared.getUsersModel()
         if usersArray.count == 0 {
-            RealmManager.shared.saveUserModel(userModel)
-            self.presentSimpleAlert(title: "Saved", message: nil)
+            if countTargetValue != 0 {
+                RealmManager.shared.saveUserModel(userModel)
+                self.presentSimpleAlert(title: "Saved", message: nil)
+            } else {
+                self.presentSimpleAlert(title: "Error", message: "Required Value for Target TextField")
+            }
         } else {
-            RealmManager.shared.updateUserModel(model: userModel)
-            self.presentSimpleAlert(title: "Saved", message: nil)
+            if countTargetValue != 0 {
+                RealmManager.shared.updateUserModel(model: userModel)
+                self.presentSimpleAlert(title: "Saved", message: nil)
+            } else {
+                self.presentSimpleAlert(title: "Error", message: "Required Value for Target TextField")
+            }
         }
         
         userModel = UserModel()
@@ -174,8 +200,11 @@ class ProfileSettingsViewController: UIViewController {
         if userPhotoImageView.image == UIImage(named: "addPhoto") {
             userModel.userImage = nil
         } else {
-            guard let imageData = userPhotoImageView.image?.pngData() else { return }
-            userModel.userImage = imageData
+//            guard let imageData = userPhotoImageView.image?.pngData() else { return }
+//            userModel.userImage = imageData
+            guard let image = userPhotoImageView.image else { return }
+            let jpegData =  image.jpegData(compressionQuality:  1.0)
+            userModel.userImage = jpegData
         }
     }
     
@@ -196,6 +225,58 @@ class ProfileSettingsViewController: UIViewController {
         }
     }
     
+}
+
+//MARK: - UIPickerControllerDelegate (Photos)
+//Before iOS 14
+extension ProfileSettingsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    private func chooseImageForProffile(source: UIImagePickerController.SourceType) {
+        if UIImagePickerController.isSourceTypeAvailable(source) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = source
+            imagePicker.allowsEditing = true
+            present(imagePicker, animated: true)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let image = info[.editedImage] as? UIImage
+        userPhotoImageView.image = image
+        userPhotoImageView.contentMode = .scaleToFill
+        dismiss(animated: true)
+    }
+}
+
+//After iOS 14
+@available(iOS 14, *)
+extension ProfileSettingsViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        results.forEach { result in
+            result.itemProvider.loadObject(ofClass: UIImage.self) { reading, error in
+                guard let image = reading as? UIImage, error == nil else { return }
+                
+                DispatchQueue.main.async {
+                    self.userPhotoImageView.image = image
+                    self.userPhotoImageView.contentMode = .scaleAspectFill 
+                }
+                 
+            }
+        }
+    }
+    
+    private func pressentPHPhoto() {
+        var phPickerConfig = PHPickerConfiguration(photoLibrary: .shared())
+        phPickerConfig.filter = PHPickerFilter.any(of: [.images])
+        phPickerConfig.selectionLimit = 1
+        
+        let phPickerVc = PHPickerViewController(configuration: phPickerConfig)
+        phPickerVc.delegate = self
+        present(phPickerVc, animated: true)
+    }
 }
 
 //MARK: - keyboard scroll

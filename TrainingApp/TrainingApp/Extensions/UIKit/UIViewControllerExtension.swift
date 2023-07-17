@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIViewController {
-    
+    //
     func presentSimpleAlert(title: String, message: String?) {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -18,6 +18,7 @@ extension UIViewController {
         present(alertController, animated: true)
     }
     
+    //
     func presentAlertForFinishButton(title: String, message: String?, completionHandler: @escaping () -> Void) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         
@@ -28,6 +29,28 @@ extension UIViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
         alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+    }
+    
+    //
+    func alertPhotoOrCamera(completionHandler: @escaping (UIImagePickerController.SourceType) -> Void) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let camera = UIAlertAction(title: "Camera", style: .default) { _ in
+            let camera = UIImagePickerController.SourceType.camera
+            completionHandler(camera)
+        }
+        
+        let photoGallery = UIAlertAction(title: "Library", style: .default) { _ in
+            let photoGallery = UIImagePickerController.SourceType.photoLibrary
+            completionHandler(photoGallery)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(camera)
+        alertController.addAction(photoGallery)
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
     }

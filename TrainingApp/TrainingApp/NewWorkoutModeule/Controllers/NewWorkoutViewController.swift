@@ -93,7 +93,6 @@ class NewWorkoutViewController: UIViewController {
         workoutModel.workoutReps = repsOrTimerView.reps
         workoutModel.workoutTimer = repsOrTimerView.timer
         
-        
         let imagine = UIImage(named: imaginePr ?? "colection1")
         guard let imageData = imagine?.pngData() else { return }
         workoutModel.workoutImage = imageData
@@ -107,6 +106,7 @@ class NewWorkoutViewController: UIViewController {
             workoutModel.workoutSets != 0 &&
             (workoutModel.workoutReps != 0 || workoutModel.workoutTimer != 0) {
             RealmManager.shared.saveWorkoutModel(workoutModel)
+            createNotification()
             self.presentSimpleAlert(title: "Saved", message: nil)
             workoutModel = WorkoutModel()
             resetValues()
@@ -120,6 +120,12 @@ class NewWorkoutViewController: UIViewController {
         dateRepeatView.resetDateAndRepeatSwitch()
         repsOrTimerView.resetSliders()
     }
+    
+    private func createNotification() {
+        let notification = Notifications()
+        let stringDate = workoutModel.workoutDate.ddMMyyyyFromDate()
+        notification.scheduledateNotification(date: workoutModel.workoutDate, id: "workout" + stringDate)
+    }
 }
 
 //MARK: ImagineProtocol
@@ -127,8 +133,6 @@ extension NewWorkoutViewController: ImagineProtocol {
     func selectItem(imagine: String) {
         self.imaginePr = imagine
     }
-    
-    
 }
 
 //MARK: - LAYOUTS

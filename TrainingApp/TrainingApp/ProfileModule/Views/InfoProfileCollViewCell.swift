@@ -15,6 +15,8 @@ class InfoProfileCollViewCell: UICollectionViewCell {
         label.text = "180"
         label.textColor = .white
         label.textAlignment = .right
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.6
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -46,7 +48,10 @@ class InfoProfileCollViewCell: UICollectionViewCell {
         layer.cornerRadius = 20
         backgroundColor = .specialDarkYellow
         
+        nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.minimumScaleFactor = 0.6
         addSubview(nameLabel)
+        
         addSubview(workoutImageView)
         addSubview(numberLabel)
     }
@@ -66,8 +71,9 @@ class InfoProfileCollViewCell: UICollectionViewCell {
 extension InfoProfileCollViewCell {
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            nameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 7),
+            nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 7),
+            nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -7),
             
             workoutImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 7),
             workoutImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -7),
@@ -76,6 +82,7 @@ extension InfoProfileCollViewCell {
             
             numberLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -6),
             numberLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -6),
+            numberLabel.leadingAnchor.constraint(equalTo: workoutImageView.trailingAnchor)
         ])
     }
 }

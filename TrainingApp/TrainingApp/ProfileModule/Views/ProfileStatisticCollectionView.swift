@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ProgressViewPRotocol: AnyObject {
-    func setProgressView()
+    func setProgressView(result: Int)
 }
 
 class ProfileStatisticCollectionView: UICollectionView {
@@ -79,7 +79,9 @@ extension ProfileStatisticCollectionView: UICollectionViewDataSource {
 
 extension ProfileStatisticCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegateProgress?.setProgressView()
+        
+        let numberResult = resultWorkout[indexPath.row].result
+        delegateProgress?.setProgressView(result: numberResult)
     }
 }
 

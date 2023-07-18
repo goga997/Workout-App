@@ -9,6 +9,15 @@ import UIKit
 
 class WeatherView: UIView {
     
+    let activityIndicator: UIActivityIndicatorView = {
+       let actIndic = UIActivityIndicatorView()
+        actIndic.style = .large
+        actIndic.color = .specialDarkGreen
+        actIndic.hidesWhenStopped = true
+        actIndic.translatesAutoresizingMaskIntoConstraints = false
+        return actIndic
+    }()
+    
     private let weatherStatusLabel: UILabel = {
        let label = UILabel()
         label.text = "Loading..."
@@ -34,9 +43,10 @@ class WeatherView: UIView {
         return label
     }()
     
-    private let weatherIcon: UIImageView = {
+     let weatherIcon: UIImageView = {
        let image = UIImageView()
         image.image = UIImage(named: "sun")
+        image.isHidden = true
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -60,12 +70,15 @@ class WeatherView: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(weatherIcon)
+        self.addSubview(activityIndicator)
         self.addSubview(weatherStatusLabel)
         self.addSubview(weatherDescriptionLabel)
     }
     
     public func updateImage(data: Data) {
         guard let image = UIImage(data: data) else { return }
+        activityIndicator.stopAnimating()
+        weatherIcon.isHidden = false
         weatherIcon.image = image
     }
     
@@ -82,7 +95,7 @@ class WeatherView: UIView {
         case "rain": weatherDescriptionLabel.text = "There is rain outside, you do not think about a training today!"
         case "thunderstorm": weatherDescriptionLabel.text = "Forget about training :)"
             
-        default: weatherDescriptionLabel.text = "No data"
+        default: weatherDescriptionLabel.text = "No matter what, you should go for a train!"
         }
     }
     
@@ -96,6 +109,11 @@ extension WeatherView {
             weatherIcon.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
             weatherIcon.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8),
             weatherIcon.widthAnchor.constraint(equalTo: weatherIcon.heightAnchor),
+            
+            activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            activityIndicator.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            activityIndicator.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8),
+            activityIndicator.widthAnchor.constraint(equalTo: weatherIcon.heightAnchor),
             
             weatherStatusLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 9),
             weatherStatusLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),

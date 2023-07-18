@@ -66,7 +66,7 @@ class MainViewController: UIViewController {
     
     private let calendarViewGreen = CalendarViewGreen()
     private let weatherView = WeatherView()
-    private let workoutTodayLabel = UILabel(text: "Workout Today")
+    private var workoutTodayLabel = UILabel(text: "Workout Today in ...")
     private let mainTableView = MainTableView()
     
     //Array that contains data from Realm
@@ -80,9 +80,12 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUpViews()
         setLayouts()
+        
+        if weatherView.weatherIcon.isHidden {
+            weatherView.activityIndicator.startAnimating()
+        }
         
         locationManager.requestWhenInUseAuthorization()
         DispatchQueue.global().async {
@@ -92,12 +95,11 @@ class MainViewController: UIViewController {
                 self.locationManager.startUpdatingLocation()
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            print("Latitude: \(self.latitude), Longitude: \(self.longitude)")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+//            print("Latitude: \(self.latitude), Longitude: \(self.longitude)")
             self.getWeather()
         }
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,12 +109,33 @@ class MainViewController: UIViewController {
         mainTableView.reloadData()
         setUpUserparametters()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        if weatherView.weatherIcon.isHidden {
+            weatherView.activityIndicator.startAnimating()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
             self.getWeather()
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        showOnBoarding()
+    }
+    
     //MARK: Functionality
+    
+    private func showOnBoarding() {
+        let userDefaults = UserDefaults.standard
+        let onBoardingWasViewd = userDefaults.bool(forKey: "OnBoardingViewed")
+        
+        if onBoardingWasViewd == false {
+            let onBoarding = OnBoardingViewController()
+            onBoarding.modalPresentationStyle = .fullScreen
+            present(onBoarding, animated: true)
+        }
+    }
     
     @objc private func addWorkoutTapped() {
         let newWorkoutVC = NewWorkoutViewController()
@@ -177,7 +200,17 @@ class MainViewController: UIViewController {
             }
             if let error = error {
                 self.presentSimpleAlert(title: "WARNING\nFailed to get Weather", message: "Weather isn't correct\n*\(error.localizedDescription)")
+                self.weatherView.activityIndicator.startAnimating()
+                self.weatherView.weatherIcon.isHidden = true
             }
+        }
+    }
+    
+    func fetchCityAndCountry(from location: CLLocation, completion: @escaping (_ city: String?, _ country: String?, _ error: Error?) -> ()) {
+        CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
+            completion(placemarks?.first?.locality,
+                       placemarks?.first?.country,
+                       error)
         }
     }
 }
@@ -186,9 +219,20 @@ class MainViewController: UIViewController {
 extension MainViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
-        
         latitude = String(location.coordinate.latitude)
         longitude = String(location.coordinate.longitude)
+        
+        fetchCityAndCountry(from: location) { city, country, error in
+            guard let city = city, let country = country, error == nil else { return }
+            self.workoutTodayLabel.text = "Workout Today in \(city) \(country)"
+        }
+        
+//        guard let locationForCityCountry: CLLocation = manager.location else { return }
+//        fetchCityAndCountry(from: locationForCityCountry) { city, country, error in
+//            guard let city = city, let country = country, error == nil else { return }
+//            print(city + " " + country)
+//            self.workoutTodayLabel.text = "Workout Today in \(city) \(country)"
+//        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

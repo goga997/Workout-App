@@ -61,6 +61,8 @@
 		DFEC415F2A666D1100DC6B38 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC415E2A666D1100DC6B38 /* NetworkRequest.swift */; };
 		DFEC41612A6675DA00DC6B38 /* NetworkDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC41602A6675DA00DC6B38 /* NetworkDataFetch.swift */; };
 		DFEC41632A667CFA00DC6B38 /* NetworkImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC41622A667CFA00DC6B38 /* NetworkImageRequest.swift */; };
+		DFEC41682A66E75500DC6B38 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC41672A66E75500DC6B38 /* OnBoardingViewController.swift */; };
+		DFEC416A2A66EC5E00DC6B38 /* OnBoardingcollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC41692A66EC5E00DC6B38 /* OnBoardingcollectionViewCell.swift */; };
 		DFF711662A3E13C000C6D5A7 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = DFF711652A3E13C000C6D5A7 /* Realm */; };
 		DFF711682A3E13C000C6D5A7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DFF711672A3E13C000C6D5A7 /* RealmSwift */; };
 		DFF7116B2A3E2BA700C6D5A7 /* BackGroundCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF7116A2A3E2BA700C6D5A7 /* BackGroundCollectionView.swift */; };
@@ -124,6 +126,8 @@
 		DFEC415E2A666D1100DC6B38 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		DFEC41602A6675DA00DC6B38 /* NetworkDataFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetch.swift; sourceTree = "<group>"; };
 		DFEC41622A667CFA00DC6B38 /* NetworkImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageRequest.swift; sourceTree = "<group>"; };
+		DFEC41672A66E75500DC6B38 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
+		DFEC41692A66EC5E00DC6B38 /* OnBoardingcollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingcollectionViewCell.swift; sourceTree = "<group>"; };
 		DFF7116A2A3E2BA700C6D5A7 /* BackGroundCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackGroundCollectionView.swift; sourceTree = "<group>"; };
 		DFF7116C2A3E329F00C6D5A7 /* ImagesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -288,6 +292,7 @@
 		DF8A19162A3114EA009FD3DF /* TrainingApp */ = {
 			isa = PBXGroup;
 			children = (
+				DFEC41642A66E71E00DC6B38 /* OnBoardingModule */,
 				DF8A192B2A312919009FD3DF /* Application */,
 				DFD190782A3B497900CCA2F1 /* NavigationModule */,
 				DF8A192C2A31294D009FD3DF /* MainModule */,
@@ -507,6 +512,31 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		DFEC41642A66E71E00DC6B38 /* OnBoardingModule */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC41662A66E73D00DC6B38 /* View */,
+				DFEC41652A66E73600DC6B38 /* Controller */,
+			);
+			path = OnBoardingModule;
+			sourceTree = "<group>";
+		};
+		DFEC41652A66E73600DC6B38 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC41672A66E75500DC6B38 /* OnBoardingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DFEC41662A66E73D00DC6B38 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC41692A66EC5E00DC6B38 /* OnBoardingcollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		DFF711692A3E2B4D00C6D5A7 /* CollectionVIew */ = {
 			isa = PBXGroup;
 			children = (
@@ -643,9 +673,11 @@
 				DF11E9442A5DBB8900979FA9 /* ResultWorkout.swift in Sources */,
 				DF73C9802A5037D100F9D03D /* TimerWorkoutViewController.swift in Sources */,
 				DF73C9822A50388F00F9D03D /* TimerWorkoutParametersView.swift in Sources */,
+				DFEC416A2A66EC5E00DC6B38 /* OnBoardingcollectionViewCell.swift in Sources */,
 				DFEC415C2A65B5B500DC6B38 /* WeatherModel.swift in Sources */,
 				DF0AB13A2A3E34DB00FD027E /* ImageCollectionViewCell.swift in Sources */,
 				DF73C9792A5021F700F9D03D /* RepsWorkoutViewController.swift in Sources */,
+				DFEC41682A66E75500DC6B38 /* OnBoardingViewController.swift in Sources */,
 				DFEC41632A667CFA00DC6B38 /* NetworkImageRequest.swift in Sources */,
 				DF8A191A2A3114EA009FD3DF /* SceneDelegate.swift in Sources */,
 			);

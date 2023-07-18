@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MainViewController: UIViewController {
+    
+    let locationManager = CLLocationManager()
+    var latitude = ""
+    var longitude = ""
     
     private let userPhotoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -75,8 +80,24 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setUpViews()
         setLayouts()
+        
+        locationManager.requestWhenInUseAuthorization()
+        DispatchQueue.global().async {
+            if CLLocationManager.locationServicesEnabled() {
+                self.locationManager.delegate = self
+                self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+                self.locationManager.startUpdatingLocation()
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            print("Latitude: \(self.latitude), Longitude: \(self.longitude)")
+            self.getWeather()
+        }
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,6 +106,10 @@ class MainViewController: UIViewController {
         selectItem(date: Date())
         mainTableView.reloadData()
         setUpUserparametters()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.getWeather()
+        }
     }
     
     //MARK: Functionality
@@ -131,6 +156,44 @@ class MainViewController: UIViewController {
             
             userPhotoImageView.image = image
         }
+    }
+    
+    private func getWeather() {
+        NetworkDataFetch.shared.fetchData(latitude: latitude, longitude: longitude) { [weak self] weatherResult, error in
+            guard let self = self else { return }
+            if let model = weatherResult {
+//                print(model)
+                self.weatherView.updateLabels(model: model)
+                
+                NetworkImageRequest.shared.requestDataForImage(id: model.weather[0].icon) { imageResult in
+                    switch imageResult {
+                    case .success(let data):
+                        self.weatherView.updateImage(data: data)
+                    case .failure(let error):
+                        print(error.localizedDescription, "imageError")
+                    }
+                }
+                
+            }
+            if let error = error {
+                self.presentSimpleAlert(title: "WARNING\nFailed to get Weather", message: "Weather isn't correct\n*\(error.localizedDescription)")
+            }
+        }
+    }
+}
+
+//MARK: CLLocationManagerDelegate
+extension MainViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        
+        latitude = String(location.coordinate.latitude)
+        longitude = String(location.coordinate.longitude)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Location error: \(error.localizedDescription)")
+        presentSimpleAlert(title: "Error", message: "Failed to access your location!\n\nGo to settings to allow localization for this application")
     }
 }
 

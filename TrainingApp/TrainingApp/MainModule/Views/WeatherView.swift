@@ -11,20 +11,22 @@ class WeatherView: UIView {
     
     private let weatherStatusLabel: UILabel = {
        let label = UILabel()
-        label.text = "Very Sunny"
-        label.numberOfLines = 1
+        label.text = "Loading..."
         label.font = .robotoMedium18()
         label.textColor = .specialGray
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.6
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let weatherDescriptionLabel: UILabel = {
        let label = UILabel()
-        label.text = "Perfect weathert to go outside for workout!"
+        label.text = "There is no data for Weather :("
         label.adjustsFontSizeToFitWidth = true
         label.font = .robotoMedium14()
-        label.minimumScaleFactor = 0.9
+        label.minimumScaleFactor = 0.8
         label.numberOfLines = 0
         label.textColor = .specialGray
         
@@ -60,6 +62,28 @@ class WeatherView: UIView {
         self.addSubview(weatherIcon)
         self.addSubview(weatherStatusLabel)
         self.addSubview(weatherDescriptionLabel)
+    }
+    
+    public func updateImage(data: Data) {
+        guard let image = UIImage(data: data) else { return }
+        weatherIcon.image = image
+    }
+    
+    public func updateLabels(model: WeatherModel) {
+        weatherStatusLabel.text = model.name + " - " + model.weather[0].weatherDescription + " \(model.main.temperatureCelsius)°C"
+      
+        switch model.weather[0].weatherDescription {
+        case "clear sky": weatherDescriptionLabel.text = "Perfect Weather to get outside\nYou should go for a training!"
+        case "few clouds": weatherDescriptionLabel.text = "No worries, quite cloudy but still nice to train!"
+        case "scattered clouds": weatherDescriptionLabel.text = "There is cloudy outside, but you can train!"
+        case "broken clouds": weatherDescriptionLabel.text = "There is cloudy outside!"
+        case "shower rain": weatherDescriptionLabel.text = "Take care maybe you do not want to get wet!"
+        case "snow": weatherDescriptionLabel.text = "Maybe it will be better if you will train at home!"
+        case "rain": weatherDescriptionLabel.text = "There is rain outside, you do not think about a training today!"
+        case "thunderstorm": weatherDescriptionLabel.text = "Forget about training :)"
+            
+        default: weatherDescriptionLabel.text = "No data"
+        }
     }
     
 }

@@ -57,6 +57,10 @@
 		DFD7412E2A3EEF4C00C27CBF /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7412D2A3EEF4C00C27CBF /* SliderView.swift */; };
 		DFD741312A3F097D00C27CBF /* SliderTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD741302A3F097D00C27CBF /* SliderTypes.swift */; };
 		DFEC415A2A6567B100DC6B38 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC41592A6567B100DC6B38 /* Notifications.swift */; };
+		DFEC415C2A65B5B500DC6B38 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC415B2A65B5B500DC6B38 /* WeatherModel.swift */; };
+		DFEC415F2A666D1100DC6B38 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC415E2A666D1100DC6B38 /* NetworkRequest.swift */; };
+		DFEC41612A6675DA00DC6B38 /* NetworkDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC41602A6675DA00DC6B38 /* NetworkDataFetch.swift */; };
+		DFEC41632A667CFA00DC6B38 /* NetworkImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC41622A667CFA00DC6B38 /* NetworkImageRequest.swift */; };
 		DFF711662A3E13C000C6D5A7 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = DFF711652A3E13C000C6D5A7 /* Realm */; };
 		DFF711682A3E13C000C6D5A7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DFF711672A3E13C000C6D5A7 /* RealmSwift */; };
 		DFF7116B2A3E2BA700C6D5A7 /* BackGroundCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF7116A2A3E2BA700C6D5A7 /* BackGroundCollectionView.swift */; };
@@ -116,6 +120,10 @@
 		DFD7412D2A3EEF4C00C27CBF /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		DFD741302A3F097D00C27CBF /* SliderTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTypes.swift; sourceTree = "<group>"; };
 		DFEC41592A6567B100DC6B38 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		DFEC415B2A65B5B500DC6B38 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		DFEC415E2A666D1100DC6B38 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		DFEC41602A6675DA00DC6B38 /* NetworkDataFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetch.swift; sourceTree = "<group>"; };
+		DFEC41622A667CFA00DC6B38 /* NetworkImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageRequest.swift; sourceTree = "<group>"; };
 		DFF7116A2A3E2BA700C6D5A7 /* BackGroundCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackGroundCollectionView.swift; sourceTree = "<group>"; };
 		DFF7116C2A3E329F00C6D5A7 /* ImagesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -290,6 +298,7 @@
 				DF42ED482A56E60800653096 /* ProfileModule */,
 				DF11E93A2A5D7D7B00979FA9 /* ProfileSettingsModule */,
 				DF262D102A3F4A7800206023 /* Services */,
+				DFEC415D2A666CFB00DC6B38 /* Network */,
 				DF8A192F2A3129AC009FD3DF /* SupportingFiles */,
 				DF8A19342A32118C009FD3DF /* Extensions */,
 			);
@@ -483,8 +492,19 @@
 			children = (
 				DF262D0C2A3F36D100206023 /* WorkoutModel.swift */,
 				DF11E9402A5DAE2A00979FA9 /* UserModel.swift */,
+				DFEC415B2A65B5B500DC6B38 /* WeatherModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		DFEC415D2A666CFB00DC6B38 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC415E2A666D1100DC6B38 /* NetworkRequest.swift */,
+				DFEC41602A6675DA00DC6B38 /* NetworkDataFetch.swift */,
+				DFEC41622A667CFA00DC6B38 /* NetworkImageRequest.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		DFF711692A3E2B4D00C6D5A7 /* CollectionVIew */ = {
@@ -600,12 +620,14 @@
 				DF8A191C2A3114EA009FD3DF /* MainViewController.swift in Sources */,
 				DF0A5BDF2A40584D00D8C1DE /* UIViewControllerExtension.swift in Sources */,
 				DFF7116B2A3E2BA700C6D5A7 /* BackGroundCollectionView.swift in Sources */,
+				DFEC415F2A666D1100DC6B38 /* NetworkRequest.swift in Sources */,
 				DFEC415A2A6567B100DC6B38 /* Notifications.swift in Sources */,
 				DF3F2C892A3DFFA00010CD99 /* GreenSlider.swift in Sources */,
 				DF302F722A3A0FFD00E3CDE7 /* StackViewExtension.swift in Sources */,
 				DFD190772A3B0B3900CCA2F1 /* StatisticCell.swift in Sources */,
 				DF42ED512A57001900653096 /* InfoProfileCollViewCell.swift in Sources */,
 				DFF7116D2A3E329F00C6D5A7 /* ImagesCollectionView.swift in Sources */,
+				DFEC41612A6675DA00DC6B38 /* NetworkDataFetch.swift in Sources */,
 				DF73C9842A50627400F9D03D /* CustomAlert.swift in Sources */,
 				DF8A19182A3114EA009FD3DF /* AppDelegate.swift in Sources */,
 				DF302F6C2A3A05BB00E3CDE7 /* UILabelExtension.swift in Sources */,
@@ -621,8 +643,10 @@
 				DF11E9442A5DBB8900979FA9 /* ResultWorkout.swift in Sources */,
 				DF73C9802A5037D100F9D03D /* TimerWorkoutViewController.swift in Sources */,
 				DF73C9822A50388F00F9D03D /* TimerWorkoutParametersView.swift in Sources */,
+				DFEC415C2A65B5B500DC6B38 /* WeatherModel.swift in Sources */,
 				DF0AB13A2A3E34DB00FD027E /* ImageCollectionViewCell.swift in Sources */,
 				DF73C9792A5021F700F9D03D /* RepsWorkoutViewController.swift in Sources */,
+				DFEC41632A667CFA00DC6B38 /* NetworkImageRequest.swift in Sources */,
 				DF8A191A2A3114EA009FD3DF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
